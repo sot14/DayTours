@@ -1,4 +1,4 @@
-package sample;
+package Daytours;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
