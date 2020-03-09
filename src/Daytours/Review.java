@@ -1,4 +1,4 @@
-package sample;
+package Daytours;
 
 public class Review {
 }

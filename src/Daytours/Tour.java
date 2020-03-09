@@ -1,4 +1,4 @@
-package sample;
+package Daytours;
 import java.util.*;
 
 public class Tour {
