@@ -4,17 +4,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="505.0" prefWidth="633.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Daytours.TourSiteController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Daytours.ToursSiteController">
    <children>
-      <Pane layoutX="30.0" layoutY="21.0" prefHeight="471.0" prefWidth="560.0">
+      <Pane layoutX="30.0" layoutY="21.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1200.0" prefWidth="1000.0">
          <children>
             <Label layoutX="25.0" layoutY="25.0" prefHeight="62.0" prefWidth="237.0" text="Dagsferðir um Ísland">
                <font>
                   <Font name="Zapfino" size="17.0" />
                </font>
             </Label>
-            <ListView layoutX="89.0" layoutY="117.0" prefHeight="329.0" prefWidth="401.0" />
+            <ListView layoutX="89.0" layoutY="117.0" prefHeight="449.0" prefWidth="401.0" />
          </children>
       </Pane>
    </children>
