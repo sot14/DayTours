@@ -8,6 +8,7 @@ public class Booking {
     private String[] participants;
     private int participantNo;
     private int tourNo;
+    private String hotelAddress;
     private BookingSiteController bookingSiteController;
 
     public Booking() {
@@ -16,7 +17,7 @@ public class Booking {
     }
 
     public String getPhoneNo() {
-        return bookingSiteController.getPhoneNoField().toString();
+        return bookingSiteController.getPhoneNoField();
     }
 
     public void setPhoneNo(String phoneNo) {
@@ -69,5 +70,13 @@ public class Booking {
 
     public void setTourNo(int tourNo) {
         this.tourNo = tourNo;
+    }
+
+    public String getHotelAddress() {
+        return hotelAddress;
+    }
+
+    public void setHotelAddress(String hotelAddress) {
+        this.hotelAddress = hotelAddress;
     }
 }
