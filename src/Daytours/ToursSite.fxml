@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane prefHeight="505.0" prefWidth="633.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Daytours.TourSiteController">
+   <children>
+      <Pane layoutX="30.0" layoutY="21.0" prefHeight="471.0" prefWidth="560.0">
+         <children>
+            <Label layoutX="25.0" layoutY="25.0" prefHeight="62.0" prefWidth="237.0" text="Dagsferðir um Ísland">
+               <font>
+                  <Font name="Zapfino" size="17.0" />
+               </font>
+            </Label>
+            <ListView layoutX="89.0" layoutY="117.0" prefHeight="329.0" prefWidth="401.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
