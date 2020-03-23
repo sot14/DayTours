@@ -1,4 +1,6 @@
-package Daytours;
+package Daytours.Model;
+
+import Daytours.Controller.BookingController;
 
 public class Booking {
     private String phoneNo;
@@ -9,7 +11,7 @@ public class Booking {
     private int participantNo;
     private int tourNo;
     private String hotelAddress;
-    private BookingSiteController bookingSiteController;
+    private BookingController bookingController;
 
     public Booking() {
         participants = new String[participantNo];
@@ -17,7 +19,7 @@ public class Booking {
     }
 
     public String getPhoneNo() {
-        return bookingSiteController.getPhoneNoField();
+        return bookingController.getPhoneNoField();
     }
 
     public void setPhoneNo(String phoneNo) {

@@ -1,4 +1,4 @@
-package Daytours;
+package Daytours.Model;
 
 public class Review {
     private int tourId;
