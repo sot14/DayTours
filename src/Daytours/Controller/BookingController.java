@@ -56,7 +56,7 @@ public class BookingController {
         this.cardNumber = cardNumber;
     }
 
-    public void bookTour(ActionEvent event) {
+    public void bookTour() {
         String[] participants = new String[]{getName()}; //laga fjölda
         booking.setParticipants(participants); //laga hér þannig að margir geti verið í einu booking
         booking.setHotelPickup(hotelPickup);
