@@ -1,4 +1,4 @@
-package Daytours;
+package Daytours.Model;
 import java.util.*;
 
 public class Tour {
