@@ -11,9 +11,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("ReviewSite.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 600, 700));
+        Parent root = FXMLLoader.load(getClass().getResource("IndexSite.fxml"));
+        primaryStage.setTitle("Dagsferðir ehf");
+        primaryStage.setScene(new Scene(root, 500, 700));
         primaryStage.show();
         DataBaseManager db = new DataBaseManager();
         db.test();
