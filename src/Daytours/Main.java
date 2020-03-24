@@ -1,5 +1,6 @@
 package Daytours;
 
+import Daytours.Database.DataBaseManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,10 +11,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("TourController.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ReviewSite.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 600, 700));
         primaryStage.show();
+        DataBaseManager db = new DataBaseManager();
+        db.test();
+
     }
 
 
