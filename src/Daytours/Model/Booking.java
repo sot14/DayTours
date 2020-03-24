@@ -12,6 +12,7 @@ public class Booking {
     private int tourNo;
     private String hotelAddress;
     private BookingController bookingController;
+    private int id;
 
     public Booking() {
         participants = new String[participantNo];
