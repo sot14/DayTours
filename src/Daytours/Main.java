@@ -1,6 +1,5 @@
 package Daytours;
 
-import Daytours.Database.DataBaseManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,9 +14,6 @@ public class Main extends Application {
         primaryStage.setTitle("Dagsferðir ehf");
         primaryStage.setScene(new Scene(root, 500, 700));
         primaryStage.show();
-        DataBaseManager db = new DataBaseManager();
-        db.test();
-
     }
 
 
