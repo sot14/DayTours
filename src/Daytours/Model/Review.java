@@ -3,7 +3,12 @@ package Daytours.Model;
 public class Review {
 
     private int tourId;
+    private String name;
     private String reviewText;
+
+    public String getName() {
+        return name;
+    }
 
     public int getTourId() {
         return tourId;
