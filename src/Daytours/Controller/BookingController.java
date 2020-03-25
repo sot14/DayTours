@@ -13,7 +13,7 @@ public class BookingController {
     public Booking booking;
     public DataBaseManager db;
 
-    public void bookTour() {
+    public void bookTour(int tourId) {
         db.addBooking(booking);
     }
 }

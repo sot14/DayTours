@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Daytours.UI.InterfaceController" />
+<AnchorPane prefHeight="700.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Daytours.UI.IndexController">
+   <children>
+      <ListView layoutX="70.0" layoutY="96.0" prefHeight="273.0" prefWidth="200.0" />
+      <Label layoutX="46.0" layoutY="43.0" prefHeight="17.0" prefWidth="95.0" text="Dagsferðir" />
+      <Button layoutX="363.0" layoutY="627.0" mnemonicParsing="false" text="Velja ferð" />
+   </children>
+</AnchorPane>
