@@ -2,15 +2,27 @@ package Daytours.Model;
 import java.util.*;
 
 public class Tour {
-    String company;
-    double length;
-    Date date;
-    String[] location;
-    String tourInfo;
-    double price;
-    int tourID;
-    int participantNum;
-    Review[] review;
+    private String company;
+    private double length;
+    private Date date;
+    private String location;
+    private String tourInfo;
+    private double price;
+    private int tourID;
+    private int participantNum;
+    private String tourName;
+
+    public Tour(String company, double length, String location, String tourInfo, double price, int tourID, int participantNum, String tourName) {
+        this.company = company;
+        this.length = length;
+        //this.date = date;
+        this.location = location;
+        this.tourInfo = tourInfo;
+        this.price = price;
+        this.tourID = tourID;
+        this.participantNum = participantNum;
+        this.tourName = tourName;
+    }
 
 
     public String getCompany() {
@@ -25,7 +37,7 @@ public class Tour {
         return date;
     }
 
-    public String[] getLocation() {
+    public String getLocation() {
         return location;
     }
 
@@ -45,10 +57,6 @@ public class Tour {
         return participantNum;
     }
 
-    public Review[] getReview() {
-        return review;
-    }
-
     public void setCompany(String company) {
         this.company = company;
     }
@@ -61,7 +69,7 @@ public class Tour {
         this.date = date;
     }
 
-    public void setLocation(String[] location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 
@@ -81,7 +89,9 @@ public class Tour {
         this.participantNum = participantNum;
     }
 
-    public void setReview(Review[] review) {
-        this.review = review;
-    }
+
+    public String getTourName() { return tourName; }
+
+    public void setTourName(String tourName) { this.tourName = tourName; }
+
 }
