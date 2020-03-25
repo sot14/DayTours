@@ -2,8 +2,19 @@ package Daytours.Model;
 
 public class Review {
 
+    private String name;//Nafnið á þeim sem skrifaði reviewið
     private int tourId;
     private String reviewText;
+
+    public Review(String name, int tourId, String reviewText) {
+        this.name = name;
+        this.tourId = tourId;
+        this.reviewText = reviewText;
+    }
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
 
     public int getTourId() {
         return tourId;
