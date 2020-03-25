@@ -71,9 +71,7 @@ public class Booking {
         this.participantNo = participantNo;
     }
 
-    public int getTourID() {
-        return tourID;
-    }
+    public int getTourID() { return tourID; }
 
     public void setTourID(int tourID) {
         this.tourID = tourID;
