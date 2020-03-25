@@ -12,6 +12,7 @@ public class Tour {
     int participantNum;
     Review[] review;
 
+
     public String getCompany() {
         return company;
     }

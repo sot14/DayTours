@@ -5,22 +5,21 @@ import Daytours.Controller.BookingController;
 public class Booking {
     private String phoneNo;
     private String cardNo;
-    private Tour[] tours;
+    private Tour tour;
     private boolean hotelPickup = false;
-    private String[] participants;
+    private String participantName;
     private int participantNo;
-    private int tourNo;
+    private int tourID;
     private String hotelAddress;
     private BookingController bookingController;
     private int id;
 
-    public Booking() {
-        participants = new String[participantNo];
-        tours = new Tour[tourNo];
+    public Booking(int tourID) {
+        //get tour með tourID
     }
 
     public String getPhoneNo() {
-        return bookingController.getPhoneNoField();
+        return phoneNo;
     }
 
     public void setPhoneNo(String phoneNo) {
@@ -35,12 +34,12 @@ public class Booking {
         this.cardNo = cardNo;
     }
 
-    public Tour[] getTours() {
-        return tours;
+    public Tour getTour() {
+        return tour;
     }
 
-    public void setTours(Tour[] tours) {
-        this.tours = tours;
+    public void setTours(Tour tour) {
+        this.tour = tour;
     }
 
     public boolean isHotelPickup() {
@@ -51,12 +50,12 @@ public class Booking {
         this.hotelPickup = hotelPickup;
     }
 
-    public String[] getParticipants() {
-        return participants;
+    public String getParticipantName() {
+        return participantName;
     }
 
-    public void setParticipants(String[] participants) {
-        this.participants = participants;
+    public void setParticipantName(String participant) {
+        this.participantName = participant;
     }
 
     public int getParticipantNo() {
@@ -67,12 +66,12 @@ public class Booking {
         this.participantNo = participantNo;
     }
 
-    public int getTourNo() {
-        return tourNo;
+    public int getTourID() {
+        return tourID;
     }
 
-    public void setTourNo(int tourNo) {
-        this.tourNo = tourNo;
+    public void setTourID(int tourID) {
+        this.tourID = tourID;
     }
 
     public String getHotelAddress() {
