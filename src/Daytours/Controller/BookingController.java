@@ -57,7 +57,7 @@ public class BookingController {
     }
 
     public void bookTour() {
-        String[] participants = new String[]{getName()}; //laga fjölda
+        String participants = getName(); //laga fjölda
         booking.setParticipants(participants); //laga hér þannig að margir geti verið í einu booking
         booking.setHotelPickup(hotelPickup);
         booking.setPhoneNo(getPhoneNoField());

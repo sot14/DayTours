@@ -5,23 +5,29 @@ import Daytours.Controller.BookingController;
 public class Booking {
     private String phoneNo;
     private String cardNo;
-    private Tour[] tours;
+    private int tourId;
     private boolean hotelPickup = false;
-    private String[] participants;
+    private String participants;
     private int participantNo;
-    private int tourNo;
     private String hotelAddress;
-    private BookingController bookingController;
-    private int id;
+    private int bookingId;
 
-    public Booking() {
-        participants = new String[participantNo];
-        tours = new Tour[tourNo];
+    public Booking(String phoneNo, String cardNo, int tourId, boolean hotelPickup, String participants, int participantNo, String hotelAddress, int id) {
+        this.phoneNo = phoneNo;
+        this.cardNo = cardNo;
+        this.tourId = tourId;
+        this.hotelPickup = hotelPickup;
+        this.participants = participants;
+        this.participantNo = participantNo;
+        this.hotelAddress = hotelAddress;
+        this.bookingId = id;
     }
 
-    public String getPhoneNo() {
-        return bookingController.getPhoneNoField();
-    }
+    public int getBookingId() { return bookingId; }
+
+    public void setBookingId(int id) { this.bookingId = id; }
+
+    public String getPhoneNo() {return phoneNo;}
 
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
@@ -35,12 +41,10 @@ public class Booking {
         this.cardNo = cardNo;
     }
 
-    public Tour[] getTours() {
-        return tours;
-    }
+    public int getTourId() { return tourId; }
 
-    public void setTours(Tour[] tours) {
-        this.tours = tours;
+    public void setTourId(int tourId) {
+        this.tourId = tourId;
     }
 
     public boolean isHotelPickup() {
@@ -51,11 +55,11 @@ public class Booking {
         this.hotelPickup = hotelPickup;
     }
 
-    public String[] getParticipants() {
+    public String getParticipants() {
         return participants;
     }
 
-    public void setParticipants(String[] participants) {
+    public void setParticipants(String participants) {
         this.participants = participants;
     }
 
@@ -65,14 +69,6 @@ public class Booking {
 
     public void setParticipantNo(int participantNo) {
         this.participantNo = participantNo;
-    }
-
-    public int getTourNo() {
-        return tourNo;
-    }
-
-    public void setTourNo(int tourNo) {
-        this.tourNo = tourNo;
     }
 
     public String getHotelAddress() {
