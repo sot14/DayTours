@@ -12,10 +12,18 @@ public class Booking {
     private int tourID;
     private String hotelAddress;
     private BookingController bookingController;
-    private int id;
+    private int bookingId;
 
-    public Booking(int tourID) {
-        //get tour með tourID
+    public Booking( String phoneNo, String cardNo, int tourID, boolean hotelPickup, String participant, int participantNo, String hotelAddress, int bookingId) {
+        this.phoneNo = phoneNo;
+        this.cardNo = cardNo;
+        this.hotelPickup = hotelPickup;
+        this.participantName = participantName;
+        this.participantNo = participantNo;
+        this.tourID = tourID;
+        this.bookingId = bookingId;
+        this.hotelAddress = hotelAddress;
+
     }
 
     public String getPhoneNo() {
@@ -74,6 +82,14 @@ public class Booking {
         this.tourID = tourID;
     }
 
+    public int getBookingId() {
+        return bookingId;
+    }
+
+    public void setBookingId(int bookingId) {
+        this.bookingId = bookingId;
+    }
+
     public String getHotelAddress() {
         return hotelAddress;
     }
@@ -82,3 +98,4 @@ public class Booking {
         this.hotelAddress = hotelAddress;
     }
 }
+

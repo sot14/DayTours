@@ -107,16 +107,16 @@ public class DataBaseManager {
         try {
             String phoneNo = "'" + booking.getPhoneNo() + "'";
             String cardNo= "'" + booking.getCardNo() + "'";
-            int tourId = booking.getTourId();
+            int tourId = booking.getTourID();
             boolean hotelPickup = booking.isHotelPickup();
-            String participants = "'" + booking.getParticipants() + "'";
+            String participant = "'" + booking.getParticipantName() + "'";
             int participantNo = booking.getParticipantNo();
             String hotelAddress = "'" + booking.getHotelAddress() + "'";
             int bookingId = booking.getBookingId();
 
             Statement stmt = db.createStatement();
             String sql = "INSERT INTO booking (id, phoneno, cardno, hotelpickup, participants, participantno, hoteladdress, tourid)" +
-                    " values (" + bookingId + "," + phoneNo + "," + cardNo + "," + hotelPickup + "," + participants +
+                    " values (" + bookingId + "," + phoneNo + "," + cardNo + "," + hotelPickup + "," + participant +
                     "," + participantNo + "," + hotelAddress + "," + tourId + ")";
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
@@ -136,12 +136,12 @@ public class DataBaseManager {
             String phoneNo = rs.getString("phoneno");
             String cardNo = rs.getString("cardno");
             boolean hotelPickup = rs.getBoolean("hotelpickup");
-            String participants = rs.getString("participants");
+            String participant = rs.getString("participant");
             int tourID = rs.getInt("tourid");
             int participantNo = rs.getInt("participantno");
             String hotelAddress = rs.getString("hoteladdress");
 
-            return new Booking(phoneNo, cardNo, tourID, hotelPickup, participants, participantNo, hotelAddress, bookingId);
+            return new Booking(phoneNo, cardNo, tourID, hotelPickup, participant, participantNo, hotelAddress, bookingId);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return null;
