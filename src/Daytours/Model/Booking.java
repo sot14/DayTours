@@ -1,7 +1,5 @@
 package Daytours.Model;
 
-import Daytours.Controller.BookingController;
-
 public class Booking {
     private String phoneNo;
     private String cardNo;
@@ -11,10 +9,9 @@ public class Booking {
     private int participantNo;
     private int tourID;
     private String hotelAddress;
-    private BookingController bookingController;
     private int bookingId;
 
-    public Booking( String phoneNo, String cardNo, int tourID, boolean hotelPickup, String participant, int participantNo, String hotelAddress, int bookingId) {
+    public Booking( String phoneNo, String cardNo, int tourID, boolean hotelPickup, String participantName, int participantNo, String hotelAddress, int bookingId) {
         this.phoneNo = phoneNo;
         this.cardNo = cardNo;
         this.hotelPickup = hotelPickup;
