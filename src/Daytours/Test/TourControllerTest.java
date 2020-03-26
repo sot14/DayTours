@@ -1,4 +1,4 @@
-package Daytours.Controller;
+package Daytours.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
