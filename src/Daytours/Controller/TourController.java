@@ -18,8 +18,9 @@ public class TourController {
         return db.getAllTours();
     }
 
-    public Tour searchTour(String tourName) {
-        return tour;
+    public ArrayList<Tour> searchTour(String tourName) {
+        return db.searchTourName(tourName);
+
     }
 
 

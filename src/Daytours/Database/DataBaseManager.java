@@ -102,6 +102,33 @@ public class DataBaseManager {
         }
     }
 
+    public ArrayList<Tour> searchTourName(String name) {
+        try{
+            ArrayList<Tour> tourList = new ArrayList<Tour>();
+            Statement stmt = db.createStatement();
+            String sql = "SELECT * FROM tour WHERE tourname LIKE name%";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while(rs.next()){
+                String company = rs.getString("company");
+                double length = rs.getDouble("length");
+                String location = rs.getString("location");
+                String tourInfo = rs.getString("tourinfo");
+                double price = rs.getDouble("price");
+                int tourID = rs.getInt("id");
+                int participantNum = rs.getInt("participantnum");
+                String tourName = rs.getString("tourname");
+
+                tourList.add(new Tour(company, length, location, tourInfo, price, tourID, participantNum, tourName));
+            }
+
+            return tourList;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
     //Tekur inn Booking hlut og setur hann í databaseið
     public void addBooking(Booking booking){
         try {
