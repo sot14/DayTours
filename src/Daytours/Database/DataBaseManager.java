@@ -102,11 +102,12 @@ public class DataBaseManager {
         }
     }
 
+    //Skilar lista með öllum Tour sem eru eins og ákveðinn strengur
     public ArrayList<Tour> searchTourName(String name) {
         try{
             ArrayList<Tour> tourList = new ArrayList<Tour>();
             Statement stmt = db.createStatement();
-            String sql = "SELECT * FROM tour WHERE tourname LIKE name%";
+            String sql = "SELECT * FROM tour WHERE tourname LIKE + name + %";
             ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()){
