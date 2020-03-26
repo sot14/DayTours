@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ public class IndexController implements Initializable {
 
     @FXML
     ListView <Tour> tourList;
+    @FXML
+    private TextField leitaFerd;
 
     public DataBaseManager db;
 
@@ -46,6 +49,11 @@ public class IndexController implements Initializable {
         System.out.println("prufa");
 
 
+    }
+
+    public void leitaFerdHandler(ActionEvent actionEvent) {
+        String l = leitaFerd.getText();
+        tourController.searchTour(l);
     }
 
 

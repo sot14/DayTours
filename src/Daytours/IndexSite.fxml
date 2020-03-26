@@ -7,10 +7,12 @@
 <AnchorPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Daytours.UI.IndexController">
    <children>
       <ListView fx:id="tourList" layoutX="46.0" layoutY="114.0" prefHeight="250.0" prefWidth="603.0" />
-      <Label layoutX="61.0" layoutY="50.0" prefHeight="28.0" prefWidth="145.0" text="Dagsferðir">
+      <Label layoutX="45.0" layoutY="31.0" prefHeight="28.0" prefWidth="145.0" text="Dagsferðir">
          <font>
             <Font size="22.0" />
          </font></Label>
       <Button layoutX="578.0" layoutY="383.0" mnemonicParsing="false" onAction="#veljaFerdHandler" prefHeight="27.0" prefWidth="86.0" text="Velja ferð" />
+      <TextField fx:id="leitaFerd" layoutX="45.0" layoutY="78.0" prefHeight="27.0" prefWidth="136.0" />
+      <Button layoutX="204.0" layoutY="78.0" mnemonicParsing="false" onAction="#leitaFerdHandler" text="Leita" />
    </children>
 </AnchorPane>
