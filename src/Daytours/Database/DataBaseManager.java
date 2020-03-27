@@ -6,7 +6,6 @@ import Daytours.Model.Tour;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class DataBaseManager {
 
@@ -30,21 +29,20 @@ public class DataBaseManager {
     //Tekur inn Tour hlut og setur hann í databaseið
     public void addTour(Tour tour) {
         try {
-            String company = "'" + tour.getCompany() + "'";
-            double length = tour.getLength();
-            //Date date = tour.getDate();
-            String location = "'" + tour.getLocation() + "'";
-            String tourInfo = "'" + tour.getTourInfo() + "'";
-            double price = tour.getPrice();
-            int tourID = tour.getTourID();
-            int participantNum = tour.getParticipantNum();
-            String tourName = "'" + tour.getTourName() + "'";
+            String sql = "INSERT INTO tour values (?,?,?,?,?,?,?,?,?)";
+            PreparedStatement stmt = db.prepareStatement(sql);
 
-            Statement stmt = db.createStatement();
-            String sql = "INSERT INTO tour (id, company, length, location, tourinfo, price, participantnum, tourname)" +
-                    " values (" + tourID + "," + company + "," + length + "," + location + "," + tourInfo +
-                    "," + price + "," + participantNum + "," + tourName + ")";
-            stmt.executeUpdate(sql);
+            stmt.setInt(1, tour.getTourID());
+            stmt.setString(2, tour.getCompany());
+            stmt.setDate(3, tour.getDate());
+            stmt.setDouble(4, tour.getLength());
+            stmt.setString(5, tour.getLocation());
+            stmt.setString(6, tour.getTourInfo());
+            stmt.setDouble(7, tour.getPrice());
+            stmt.setInt(8,tour.getParticipantNum());
+            stmt.setString(9, tour.getTourName());
+
+            stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -53,13 +51,15 @@ public class DataBaseManager {
     //Tekur inn id og skilar Tour hlutnum með það id
     public Tour getTour(int id) {
         try {
-            Statement stmt = db.createStatement();
-            String sql = "SELECT * FROM tour WHERE id=" + id;
-            ResultSet rs = stmt.executeQuery(sql);
+            String sql = "SELECT * FROM tour WHERE id=?";
+            PreparedStatement stmt = db.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
             rs.next();
 
             String company = rs.getString("company");
             double length = rs.getDouble("length");
+            Date date = rs.getDate("date");
             String location = rs.getString("location");
             String tourInfo = rs.getString("tourinfo");
             double price = rs.getDouble("price");
@@ -67,7 +67,7 @@ public class DataBaseManager {
             int participantNum = rs.getInt("participantnum");
             String tourName = rs.getString("tourname");
 
-            return new Tour(company, length, location, tourInfo, price, tourID, participantNum, tourName);
+            return new Tour(company, length, date, location, tourInfo, price, tourID, participantNum, tourName);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return null;
@@ -78,13 +78,14 @@ public class DataBaseManager {
     public ArrayList<Tour> getAllTours(){
         try{
             ArrayList<Tour> tourList = new ArrayList<Tour>();
-            Statement stmt = db.createStatement();
             String sql = "SELECT * FROM tour";
-            ResultSet rs = stmt.executeQuery(sql);
+            PreparedStatement stmt = db.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
 
             while(rs.next()){
                 String company = rs.getString("company");
                 double length = rs.getDouble("length");
+                Date date = rs.getDate("date");
                 String location = rs.getString("location");
                 String tourInfo = rs.getString("tourinfo");
                 double price = rs.getDouble("price");
@@ -92,7 +93,7 @@ public class DataBaseManager {
                 int participantNum = rs.getInt("participantnum");
                 String tourName = rs.getString("tourname");
 
-                tourList.add(new Tour(company, length, location, tourInfo, price, tourID, participantNum, tourName));
+                tourList.add(new Tour(company, length, date, location, tourInfo, price, tourID, participantNum, tourName));
             }
 
             return tourList;
@@ -106,13 +107,15 @@ public class DataBaseManager {
     public ArrayList<Tour> searchTourName(String name) {
         try{
             ArrayList<Tour> tourList = new ArrayList<Tour>();
-            Statement stmt = db.createStatement();
-            String sql = "SELECT * FROM tour WHERE tourname LIKE + name + %";
-            ResultSet rs = stmt.executeQuery(sql);
+            String sql = "SELECT * FROM tour WHERE tourname LIKE ?";
+            PreparedStatement stmt = db.prepareStatement(sql);
+            stmt.setString(1, name + "%");
+            ResultSet rs = stmt.executeQuery();
 
             while(rs.next()){
                 String company = rs.getString("company");
                 double length = rs.getDouble("length");
+                Date date = rs.getDate("date");
                 String location = rs.getString("location");
                 String tourInfo = rs.getString("tourinfo");
                 double price = rs.getDouble("price");
@@ -120,7 +123,7 @@ public class DataBaseManager {
                 int participantNum = rs.getInt("participantnum");
                 String tourName = rs.getString("tourname");
 
-                tourList.add(new Tour(company, length, location, tourInfo, price, tourID, participantNum, tourName));
+                tourList.add(new Tour(company, length, date, location, tourInfo, price, tourID, participantNum, tourName));
             }
 
             return tourList;
@@ -133,20 +136,19 @@ public class DataBaseManager {
     //Tekur inn Booking hlut og setur hann í databaseið
     public void addBooking(Booking booking){
         try {
-            String phoneNo = "'" + booking.getPhoneNo() + "'";
-            String cardNo= "'" + booking.getCardNo() + "'";
-            int tourId = booking.getTourID();
-            boolean hotelPickup = booking.isHotelPickup();
-            String participant = "'" + booking.getParticipantName() + "'";
-            int participantNo = booking.getParticipantNo();
-            String hotelAddress = "'" + booking.getHotelAddress() + "'";
-            int bookingId = booking.getBookingId();
+            String sql = "INSERT INTO booking values (?,?,?,?,?,?,?,?)";
+            PreparedStatement stmt = db.prepareStatement(sql);
 
-            Statement stmt = db.createStatement();
-            String sql = "INSERT INTO booking (id, phoneno, cardno, hotelpickup, participants, participantno, hoteladdress, tourid)" +
-                    " values (" + bookingId + "," + phoneNo + "," + cardNo + "," + hotelPickup + "," + participant +
-                    "," + participantNo + "," + hotelAddress + "," + tourId + ")";
-            stmt.executeUpdate(sql);
+            stmt.setInt(1, booking.getBookingId());
+            stmt.setString(2, booking.getPhoneNo());
+            stmt.setString(3, booking.getCardNo());
+            stmt.setBoolean(4, booking.isHotelPickup());
+            stmt.setString(5, booking.getParticipantName());
+            stmt.setInt(6, booking.getParticipantNo());
+            stmt.setString(7, booking.getHotelAddress());
+            stmt.setInt(8, booking.getTourID());
+
+            stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -155,16 +157,17 @@ public class DataBaseManager {
     //Tekur inn id og skilar Booking hlut með það id
     public Booking getBooking(int id) {
         try {
-            Statement stmt = db.createStatement();
-            String sql = "SELECT * FROM booking WHERE id=" + id;
-            ResultSet rs = stmt.executeQuery(sql);
+            String sql = "SELECT * FROM booking WHERE id=?";
+            PreparedStatement stmt = db.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
             rs.next();
 
             int bookingId = rs.getInt("id");
             String phoneNo = rs.getString("phoneno");
             String cardNo = rs.getString("cardno");
             boolean hotelPickup = rs.getBoolean("hotelpickup");
-            String participant = rs.getString("participant");
+            String participant = rs.getString("participants");
             int tourID = rs.getInt("tourid");
             int participantNo = rs.getInt("participantno");
             String hotelAddress = rs.getString("hoteladdress");
@@ -179,14 +182,14 @@ public class DataBaseManager {
     //Tekur inn Review hlut og setur hann í databaseið
     public void addReview(Review review){
         try {
-            String name = "'" + review.getName() + "'";
-            String reviewText = "'" + review.getReviewText() + "'";
-            int tourId = review.getTourId();
+            String sql = "INSERT INTO review values (?, ?, ?)";
+            PreparedStatement stmt = db.prepareStatement(sql);
 
-            Statement stmt = db.createStatement();
-            String sql = "INSERT INTO review (tourid, reviewtext, name)" +
-                    " values (" + tourId + "," + reviewText + "," + name + ")";
-            stmt.executeUpdate(sql);
+            stmt.setInt(1, review.getTourId());
+            stmt.setString(2, review.getReviewText());
+            stmt.setString(3, review.getName());
+
+            stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -196,9 +199,10 @@ public class DataBaseManager {
     public ArrayList<Review> getReviews(int tourId){
         try{
             ArrayList<Review> reviewList = new ArrayList<Review>();
-            Statement stmt = db.createStatement();
-            String sql = "SELECT * FROM review WHERE tourid=" + tourId;
-            ResultSet rs = stmt.executeQuery(sql);
+            String sql = "SELECT * FROM review WHERE tourid=?";
+            PreparedStatement stmt = db.prepareStatement(sql);
+            stmt.setInt(1, tourId);
+            ResultSet rs = stmt.executeQuery();
 
             while(rs.next()){
                 String name = rs.getString("name");

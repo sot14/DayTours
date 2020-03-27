@@ -1,5 +1,5 @@
 package Daytours.Model;
-import java.util.*;
+import java.sql.Date;
 
 public class Tour {
     private String company;
@@ -12,10 +12,10 @@ public class Tour {
     private int participantNum;
     private String tourName;
 
-    public Tour(String company, double length, String location, String tourInfo, double price, int tourID, int participantNum, String tourName) {
+    public Tour(String company, double length, Date date, String location, String tourInfo, double price, int tourID, int participantNum, String tourName) {
         this.company = company;
         this.length = length;
-        //this.date = date;
+        this.date = date;
         this.location = location;
         this.tourInfo = tourInfo;
         this.price = price;
@@ -94,4 +94,8 @@ public class Tour {
 
     public void setTourName(String tourName) { this.tourName = tourName; }
 
+    @Override
+    public String toString() {
+        return tourName;
+    }
 }
