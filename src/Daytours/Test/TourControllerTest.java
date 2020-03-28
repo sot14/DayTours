@@ -3,20 +3,20 @@ package Daytours.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import Daytours.Controller.TourController;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
 class TourControllerTest {
     private  TourController tester;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         tester = new TourController();
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         tester = null;
     }
