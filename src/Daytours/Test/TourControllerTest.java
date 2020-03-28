@@ -31,12 +31,12 @@ class TourControllerTest {
 
     @Test
     public void searchReturnsNoTour() {
-        assertNotNull(testerNull.searchTour("p"));
+        assertNull(testerNull.searchTour("p"));
     }
 
     @Test
     public void searchInvalidParameter() {
-        assertNotNull(testerNull.searchTour("$"));
+        assertNull(testerNull.searchTour("$"));
     }
 
 
