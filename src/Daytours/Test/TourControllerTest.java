@@ -2,17 +2,42 @@ package Daytours.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import Daytours.Controller.TourController;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.jupiter.api.Test;
+
+
 class TourControllerTest {
+    private  TourController tester,testerNull;
 
-    @org.junit.jupiter.api.Test
-    void getTour() {
+    @Before
+    public void setUp() {
+        tester = new TourController();
+        testerNull = new TourController();
     }
 
-    @org.junit.jupiter.api.Test
-    void getAllTours() {
+    @After
+    public void tearDown() {
+        tester = null;
+        testerNull = null;
     }
 
-    @org.junit.jupiter.api.Test
-    void searchTour() {
+    @Test
+    public void searchReturnsTour() {
+        assertNotNull(tester.searchTour("Fer"));
+
     }
+
+    @Test
+    public void searchReturnsNoTour() {
+        assertNotNull(testerNull.searchTour("p"));
+    }
+
+    @Test
+    public void searchInvalidParameter() {
+        assertNotNull(testerNull.searchTour("$"));
+    }
+
+
 }
