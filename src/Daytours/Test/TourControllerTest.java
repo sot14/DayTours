@@ -9,18 +9,16 @@ import org.junit.jupiter.api.Test;
 
 
 class TourControllerTest {
-    private  TourController tester,testerNull;
+    private  TourController tester;
 
     @Before
     public void setUp() {
         tester = new TourController();
-        testerNull = new TourController();
     }
 
     @After
     public void tearDown() {
         tester = null;
-        testerNull = null;
     }
 
     @Test
@@ -31,12 +29,12 @@ class TourControllerTest {
 
     @Test
     public void searchReturnsNoTour() {
-        assertNull(testerNull.searchTour("p"));
+        assertNull(tester.searchTour("p"));
     }
 
     @Test
     public void searchInvalidParameter() {
-        assertNull(testerNull.searchTour("$"));
+        assertNull(tester.searchTour("$"));
     }
 
 
