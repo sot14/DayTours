@@ -34,6 +34,11 @@ class TourControllerTest {
     }
 
     @Test
+    public void searchReturnsRightTour() {
+        assertEquals("Around the Golden Circle",tester.searchTour("Around the Golden Circle").get(0).toString());
+    }
+
+    @Test
     public void searchInvalidParameter() {
         assertEquals("[]",tester.searchTour("$").toString());
     }
