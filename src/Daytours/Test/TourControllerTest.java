@@ -1,6 +1,7 @@
 package Daytours.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertArrayEquals;
 
 import Daytours.Controller.TourController;
 import org.junit.jupiter.api.AfterEach;
@@ -29,12 +30,12 @@ class TourControllerTest {
 
     @Test
     public void searchReturnsNoTour() {
-        assertNull(tester.searchTour("p"));
+        assertEquals("[]",tester.searchTour("p").toString());
     }
 
     @Test
     public void searchInvalidParameter() {
-        assertNull(tester.searchTour("$"));
+        assertEquals("[]",tester.searchTour("$").toString());
     }
 
 
