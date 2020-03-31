@@ -11,7 +11,7 @@
          <font>
             <Font size="22.0" />
          </font></Label>
-      <Button layoutX="578.0" layoutY="383.0" mnemonicParsing="false" onAction="#veljaFerdHandler" prefHeight="27.0" prefWidth="86.0" text="Velja ferð" />
+      <Button fx:id="veljaFerdButton" layoutX="578.0" layoutY="383.0" mnemonicParsing="false" onAction="#veljaFerdHandler" prefHeight="27.0" prefWidth="86.0" text="Velja ferð" />
       <TextField fx:id="leitaFerd" layoutX="45.0" layoutY="78.0" prefHeight="27.0" prefWidth="136.0" />
       <Button layoutX="204.0" layoutY="78.0" mnemonicParsing="false" onAction="#leitaFerdHandler" text="Leita" />
    </children>

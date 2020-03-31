@@ -7,15 +7,23 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class IndexController implements Initializable {
+
 
     private TourController tourController;
 
@@ -23,6 +31,8 @@ public class IndexController implements Initializable {
     private ListView <Tour> tourList;
     @FXML
     private TextField leitaFerd;
+    @FXML
+    public Button veljaFerdButton;
 
     int tourID;
 
@@ -43,10 +53,27 @@ public class IndexController implements Initializable {
     }
 
     // atburðar handler fyrir velja ferð takkann á forsíðu
-    public void veljaFerdHandler(ActionEvent actionEvent) {
+    public void veljaFerdHandler(ActionEvent actionEvent) throws IOException {
         //Nær í ID á Tour sem er valinn
         tourID = tourList.getSelectionModel().getSelectedItem().getTourID();
         System.out.println(tourID);
+        Stage stage = (Stage) veljaFerdButton.getScene().getWindow();
+        //loka núverandi glugga þ.e. tours glugga
+        stage.close();
+
+
+        //opna næsta glugga þ.e. tour&review glugga
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/UI/ReviewSite.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage2 = new Stage();
+        stage2.initModality(Modality.APPLICATION_MODAL);
+        stage2.setOpacity(1);
+        stage2.setTitle("nafn á völdum tour");
+        stage2.setScene(new Scene(root, 450, 450));
+        stage2.showAndWait();
+
+
     }
 
     public void leitaFerdHandler(ActionEvent actionEvent) {
@@ -54,6 +81,7 @@ public class IndexController implements Initializable {
         ArrayList<Tour> listOfTours = tourController.searchTour(l);
         updateTour(FXCollections.observableArrayList(listOfTours));
     }
+
 
 
 }
