@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="659.0" prefWidth="973.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Daytours.UI.IndexController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Daytours.UI.IndexSiteController">
    <children>
       <ListView fx:id="tourList" layoutX="46.0" layoutY="114.0" prefHeight="250.0" prefWidth="541.0" />
       <Label layoutX="45.0" layoutY="31.0" prefHeight="28.0" prefWidth="145.0" text="Dagsferðir">
@@ -14,7 +14,7 @@
       <Button fx:id="veljaFerdButton" layoutX="486.0" layoutY="381.0" mnemonicParsing="false" onAction="#veljaFerdHandler" prefHeight="27.0" prefWidth="86.0" text="Velja ferð" />
       <TextField fx:id="leitaFerd" layoutX="45.0" layoutY="78.0" prefHeight="27.0" prefWidth="136.0" />
       <Button layoutX="204.0" layoutY="78.0" mnemonicParsing="false" onAction="#leitaFerdHandler" text="Leita" />
-      <CheckBox layoutX="596.0" layoutY="265.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Aðgengi" />
+      <CheckBox layoutX="596.0" layoutY="265.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Aðgengi" />
       <Slider fx:id="lengdSlider" blockIncrement="1.0" layoutX="596.0" layoutY="171.0" max="12.0" prefHeight="14.0" prefWidth="174.0" />
       <Label layoutX="658.0" layoutY="146.0" prefHeight="25.0" prefWidth="74.0" text="Lengd">
          <font>

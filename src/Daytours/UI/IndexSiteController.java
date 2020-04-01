@@ -1,5 +1,4 @@
 package Daytours.UI;
-import Daytours.Controller.BookingController;
 import Daytours.Controller.TourController;
 import Daytours.Model.Tour;
 
@@ -22,7 +21,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class IndexController implements Initializable {
+public class IndexSiteController implements Initializable {
 
 
     private TourController tourController;
@@ -56,23 +55,23 @@ public class IndexController implements Initializable {
     public void veljaFerdHandler(ActionEvent actionEvent) throws IOException {
         //Nær í ID á Tour sem er valinn
         tourID = tourList.getSelectionModel().getSelectedItem().getTourID();
+        String tourName = tourList.getSelectionModel().getSelectedItem().getTourName();
         System.out.println(tourID);
         Stage stage = (Stage) veljaFerdButton.getScene().getWindow();
         //loka núverandi glugga þ.e. tours glugga
         stage.close();
 
         //opna næsta glugga þ.e. tour&review glugga
-        System.out.println(IndexController.class.getResource("/Daytours/ReviewSite.fxml"));
+        System.out.println(IndexSiteController.class.getResource("/Daytours/UI/ReviewSite.fxml"));
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/ReviewSite.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/ReviewSite.fxml"));
         Parent root = (Parent)fxmlLoader.load();
         Stage stage2 = new Stage();
         stage2.initModality(Modality.APPLICATION_MODAL);
         stage2.setOpacity(1);
-        stage2.setTitle("nafn á völdum tour");
+        stage2.setTitle(tourName);
         stage2.setScene(new Scene(root, 600, 400));
         stage2.showAndWait();
-
 
     }
 

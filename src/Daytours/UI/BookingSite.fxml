@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Daytours.UI.BookingSiteController">
+   <Label layoutX="74.0" layoutY="58.0" text="Nafn:" />
+   <Label layoutX="74.0" layoutY="103.0" text="Hótel:" />
+   <Label layoutX="74.0" layoutY="151.0" text="Símanúmer:" />
+   <TextField fx:id="nameField" layoutX="158.0" layoutY="54.0" />
+   <TextField fx:id="addressField" layoutX="158.0" layoutY="99.0" />
+   <TextField fx:id="phoneNoField" layoutX="158.0" layoutY="147.0" />
+   <Button fx:id="bookButton" layoutX="404.0" layoutY="319.0" mnemonicParsing="false" onAction="#bookTour" prefHeight="25.0" prefWidth="81.0" text="Bóka" />
+   <CheckBox fx:id="hotelPickupBox" layoutX="342.0" layoutY="103.0" mnemonicParsing="false" onAction="#hotelPickupHandler" text="Hotel Pickup" />
+   <Label layoutX="74.0" layoutY="226.0" prefHeight="17.0" prefWidth="89.0" text="Kortanúmer:" />
+   <Label layoutX="74.0" layoutY="268.0" text="Gildistími:" />
+   <TextField fx:id="cardNumber" layoutX="163.0" layoutY="222.0" />
+   <ChoiceBox fx:id="day" layoutX="163.0" layoutY="264.0" prefHeight="25.0" prefWidth="43.0" />
+   <ChoiceBox fx:id="month" layoutX="212.0" layoutY="264.0" prefHeight="25.0" prefWidth="43.0" />
+   <ChoiceBox fx:id="year" layoutX="265.0" layoutY="264.0" prefHeight="25.0" prefWidth="63.0" />
+   <Label layoutX="54.0" layoutY="20.0" prefHeight="25.0" prefWidth="163.0" text="Bókun á: Dagsferð 1" />
+   <Button fx:id="tilBakaButton" layoutX="54.0" layoutY="319.0" mnemonicParsing="false" onAction="#tilBakaHandler" prefHeight="27.0" prefWidth="102.0" text="Til baka" />
+</AnchorPane>
