@@ -1,7 +1,6 @@
 package Daytours.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.Assert.assertArrayEquals;
 
 import Daytours.Controller.TourController;
 import org.junit.jupiter.api.AfterEach;
@@ -25,7 +24,6 @@ class TourControllerTest {
     @Test
     public void searchReturnsTour() {
         assertNotNull(tester.searchTour("Fer"));
-
     }
 
     @Test
@@ -35,7 +33,7 @@ class TourControllerTest {
 
     @Test
     public void searchReturnsRightTour() {
-        assertEquals("Around the Golden Circle",tester.searchTour("Around the Golden Circle").get(0).toString());
+        assertEquals("Around the Golden Circle",tester.searchTour("Around the Golden Circle").get(0).toString()); //getName
     }
 
     @Test
