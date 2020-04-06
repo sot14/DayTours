@@ -11,9 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -25,6 +23,8 @@ import java.util.ResourceBundle;
 public class IndexController implements Initializable {
 
 
+    public Slider lengdSlider;
+    public DatePicker datePicker;
     private TourController tourController;
 
     @FXML
@@ -62,9 +62,9 @@ public class IndexController implements Initializable {
         stage.close();
 
         //opna næsta glugga þ.e. tour&review glugga
-        System.out.println(IndexController.class.getResource("/Daytours/ReviewSite.fxml"));
+        System.out.println(IndexController.class.getResource("/Daytours/BookingSite.fxml"));
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/ReviewSite.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/BookingSite.fxml"));
         Parent root = (Parent)fxmlLoader.load();
         Stage stage2 = new Stage();
         stage2.initModality(Modality.APPLICATION_MODAL);
