@@ -3,6 +3,8 @@ package Daytours.UI;
 import Daytours.Controller.ReviewController;
 import Daytours.Controller.TourController;
 import Daytours.Model.Tour;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,10 +12,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ReviewSiteController {
 
@@ -23,13 +27,29 @@ public class ReviewSiteController {
     public Button tilBakaButton;
     @FXML
     public Label tourNafn;
+    @FXML
+    public Label company;
+    @FXML
+    public Label date;
+    @FXML
+    public Label length;
+    @FXML
+    public Label loc;
+    @FXML
+    public Label info;
+    @FXML
+    public Label price;
+    @FXML
+    public Label participants;
 
+    public Tour tours;
     //ReviewController reviewController;
-    //TourController tourController;
+   // public TourController tourController;
 
     public void setjaTourNafn(String tour) {
         tourNafn.setText(tour);
     }
+
 
     public void bokaFerdHandler(ActionEvent actionEvent) throws IOException {
         //loka núverandi glugga þ.e. tour/review glugga
