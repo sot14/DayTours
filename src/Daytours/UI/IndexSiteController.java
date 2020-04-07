@@ -1,5 +1,4 @@
 package Daytours.UI;
-import Daytours.Controller.BookingController;
 import Daytours.Controller.TourController;
 import Daytours.Model.Tour;
 
@@ -11,7 +10,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -20,11 +21,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class IndexController implements Initializable {
+public class IndexSiteController implements Initializable {
 
 
-    public Slider lengdSlider;
-    public DatePicker datePicker;
     private TourController tourController;
 
     @FXML
@@ -56,23 +55,23 @@ public class IndexController implements Initializable {
     public void veljaFerdHandler(ActionEvent actionEvent) throws IOException {
         //Nær í ID á Tour sem er valinn
         tourID = tourList.getSelectionModel().getSelectedItem().getTourID();
+        String tourName = tourList.getSelectionModel().getSelectedItem().getTourName();
         System.out.println(tourID);
         Stage stage = (Stage) veljaFerdButton.getScene().getWindow();
         //loka núverandi glugga þ.e. tours glugga
         stage.close();
 
         //opna næsta glugga þ.e. tour&review glugga
-        System.out.println(IndexController.class.getResource("/Daytours/BookingSite.fxml"));
+        System.out.println(IndexSiteController.class.getResource("/Daytours/UI/ReviewSite.fxml"));
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/BookingSite.fxml"));
-        Parent root = (Parent)fxmlLoader.load();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/ReviewSite.fxml"));
+        Parent root = fxmlLoader.load();
         Stage stage2 = new Stage();
         stage2.initModality(Modality.APPLICATION_MODAL);
         stage2.setOpacity(1);
-        stage2.setTitle("nafn á völdum tour");
+        stage2.setTitle(tourName);
         stage2.setScene(new Scene(root, 600, 400));
         stage2.showAndWait();
-
 
     }
 
