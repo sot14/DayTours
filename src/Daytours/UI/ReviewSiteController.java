@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,9 +18,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class ReviewSiteController {
+public class ReviewSiteController implements Initializable {
 
     @FXML
     public Button bokaFerdButton;
@@ -42,12 +45,24 @@ public class ReviewSiteController {
     @FXML
     public Label participants;
 
-    public Tour tours;
-    //ReviewController reviewController;
-   // public TourController tourController;
+    public Tour tour;
+    ReviewController reviewController;
+    public TourController tourController;
 
-    public void setjaTourNafn(String tour) {
-        tourNafn.setText(tour);
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        reviewController = new ReviewController();
+        tourController = new TourController();
+    }
+
+    public void setTour(Tour tour){
+        this.tour = tour;
+        synaTour();
+    }
+
+    public void synaTour() {
+        tourNafn.setText(tour.getTourName());
+        //...
     }
 
 

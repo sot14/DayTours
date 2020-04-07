@@ -34,7 +34,7 @@ public class IndexSiteController implements Initializable {
     @FXML
     public Button veljaFerdButton;
 
-    int tourID;
+    Tour tour;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -54,10 +54,8 @@ public class IndexSiteController implements Initializable {
 
     // atburðar handler fyrir velja ferð takkann á forsíðu
     public void veljaFerdHandler(ActionEvent actionEvent) throws IOException {
-        //Nær í ID á Tour sem er valinn
-        tourID = tourList.getSelectionModel().getSelectedItem().getTourID();
-        String tourName = tourList.getSelectionModel().getSelectedItem().getTourName();
-        System.out.println(tourID);
+        //Nær í þann Tour sem er valinn
+        tour = tourList.getSelectionModel().getSelectedItem();
         Stage stage = (Stage) veljaFerdButton.getScene().getWindow();
         //loka núverandi glugga þ.e. tours glugga
         stage.close();
@@ -68,11 +66,11 @@ public class IndexSiteController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/ReviewSite.fxml"));
         Parent root = fxmlLoader.load();
         ReviewSiteController reviewsitecontroller = fxmlLoader.getController();
-        reviewsitecontroller.setjaTourNafn(tourName);
+        reviewsitecontroller.setTour(tour);
         Stage stage2 = new Stage();
         stage2.initModality(Modality.APPLICATION_MODAL);
         stage2.setOpacity(1);
-        stage2.setTitle(tourName);
+        stage2.setTitle(tour.getTourName());
         stage2.setScene(new Scene(root, 600, 400));
         stage2.showAndWait();
 
