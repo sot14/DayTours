@@ -2,12 +2,14 @@ package Daytours.UI;
 
 import Daytours.Controller.ReviewController;
 import Daytours.Controller.TourController;
+import Daytours.Model.Tour;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -19,9 +21,15 @@ public class ReviewSiteController {
     public Button bokaFerdButton;
     @FXML
     public Button tilBakaButton;
+    @FXML
+    public Label tourNafn;
 
     //ReviewController reviewController;
     //TourController tourController;
+
+    public void setjaTourNafn(String tour) {
+        tourNafn.setText(tour);
+    }
 
     public void bokaFerdHandler(ActionEvent actionEvent) throws IOException {
         //loka núverandi glugga þ.e. tour/review glugga

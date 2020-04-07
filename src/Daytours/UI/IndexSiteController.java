@@ -1,6 +1,7 @@
 package Daytours.UI;
 import Daytours.Controller.TourController;
 import Daytours.Model.Tour;
+import Daytours.UI.ReviewSiteController;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -66,6 +67,8 @@ public class IndexSiteController implements Initializable {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/ReviewSite.fxml"));
         Parent root = fxmlLoader.load();
+        ReviewSiteController reviewsitecontroller = fxmlLoader.getController();
+        reviewsitecontroller.setjaTourNafn(tourName);
         Stage stage2 = new Stage();
         stage2.initModality(Modality.APPLICATION_MODAL);
         stage2.setOpacity(1);
@@ -79,6 +82,7 @@ public class IndexSiteController implements Initializable {
         String l = leitaFerd.getText();
         ArrayList<Tour> listOfTours = tourController.searchTour(l);
         updateTour(FXCollections.observableArrayList(listOfTours));
+
     }
 
 
