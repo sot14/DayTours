@@ -65,7 +65,7 @@ public class IndexSiteController implements Initializable {
         System.out.println(IndexSiteController.class.getResource("/Daytours/UI/ReviewSite.fxml"));
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/ReviewSite.fxml"));
-        Parent root = (Parent)fxmlLoader.load();
+        Parent root = fxmlLoader.load();
         Stage stage2 = new Stage();
         stage2.initModality(Modality.APPLICATION_MODAL);
         stage2.setOpacity(1);
