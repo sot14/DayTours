@@ -47,6 +47,12 @@ public class IndexSiteController {
     private TourController tourController;
     int tourID;
     private Tour tour;
+    String searchString = "";
+    int chosenLength = 12;
+    String chosenLandshluti = "";
+    Date fraDate = Date.valueOf("1980-01-01");
+    Date tilDate = Date.valueOf("2050-01-01");
+    int chosenPrice = 17000;
 
     public void init(DataBaseManager db) {
         tourController = new TourController(db);
@@ -90,48 +96,59 @@ public class IndexSiteController {
 
 
     public void leitaFerdHandler(ActionEvent actionEvent) {
-        String l = leitaFerd.getText();
-        ArrayList<Tour> listOfTours = tourController.searchTour(l);
-        updateTour(FXCollections.observableArrayList(listOfTours));
+        searchString = leitaFerd.getText();
+        //ArrayList<Tour> listOfTours = tourController.searchTour(searchString);
+        ArrayList<Tour> listOfTours = tourController.getFilteredTours(searchString, chosenPrice, fraDate, tilDate, chosenLandshluti, chosenLength);
+        ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
+        //updateTour(FXCollections.observableArrayList(listOfTours));
+        tourList.setItems(listViewTours);
     }
 
     // atburðarhandler á sleðanum sem notaður er til að velja hámarkslengd ferða
     public void lengdSliderHandler(MouseEvent mouseEvent) {
-        int chosenLength = (int)lengdSlider.getValue();
-        ArrayList<Tour> listOfTours = tourController.getAllToursWithMaxLength(chosenLength);
+        chosenLength = (int)lengdSlider.getValue();
+        //ArrayList<Tour> listOfTours = tourController.getAllToursWithMaxLength(chosenLength);
+        ArrayList<Tour> listOfTours = tourController.getFilteredTours(searchString, chosenPrice, fraDate, tilDate, chosenLandshluti, chosenLength);
         ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
         tourList.setItems(listViewTours);
+        System.out.println(searchString);
+        System.out.println(fraDate);
+        System.out.println(tilDate);
+        System.out.println(chosenLength);
     }
 
     // atburðahandler fyrir hvaða landshluti er valinn
     public void landshlutiHandler(ActionEvent actionEvent) {
-        String chosenLandshluti = landshlutiCombobox.getSelectionModel().getSelectedItem().toString();
+        chosenLandshluti = landshlutiCombobox.getSelectionModel().getSelectedItem().toString();
+        ArrayList<Tour> listOfTours = new ArrayList<>();
         if(chosenLandshluti.equals("Allt landið")) {
-            setTourList();
+            //setTourList();
+            listOfTours = tourController.getFilteredTours(searchString, chosenPrice, fraDate, tilDate, "", chosenLength);
         }
         else {
-            ArrayList<Tour> listOfTours = tourController.getAllToursWithLocation(chosenLandshluti);
-            ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
-            tourList.setItems(listViewTours);
+            //ArrayList<Tour> listOfTours = tourController.getAllToursWithLocation(chosenLandshluti);
+            listOfTours = tourController.getFilteredTours(searchString, chosenPrice, fraDate, tilDate, chosenLandshluti, chosenLength);
         }
+        ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
+        tourList.setItems(listViewTours);
     }
 
     // atburðarhandler fyrir hvaða dagsetninga tímabil er valið
     public void timabilHandler(ActionEvent actionEvent) {
-        LocalDate fraDate = fraDatePicker.getValue();
-        LocalDate tilDate = tilDatePicker.getValue();
+        LocalDate fra = fraDatePicker.getValue();
+        LocalDate til = tilDatePicker.getValue();
 
 
         // passa að búið sé að velja bæði frá og til dagsetningu
-        if(fraDate != null && tilDate!=null) {
-            if (fraDate.isAfter(tilDate)) {
+        if(fra != null && til!=null) {
+            if (fra.isAfter(til)) {
                 System.out.println("*** Ólöglegt val á tímabili. *** ");
                 System.out.println("Byrjunardagsetning á tímabilinu kemur á eftir endadagsetningu tímabilsins.");
             }
             else {
-                Date fraDatesql = Date.valueOf(fraDate);
-                Date tilDatesql = Date.valueOf(tilDate);
-                ArrayList<Tour> listOfTours = tourController.getAllToursInsideTimePeriod(fraDatesql,tilDatesql);
+                fraDate = Date.valueOf(fra);
+                tilDate = Date.valueOf(til);
+                ArrayList<Tour> listOfTours = tourController.getFilteredTours(searchString, chosenPrice, fraDate, tilDate, chosenLandshluti, chosenLength);
                 ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
                 tourList.setItems(listViewTours);
             }
@@ -140,9 +157,9 @@ public class IndexSiteController {
     }
 
     public void verdSliderHandler(MouseEvent mouseEvent) {
-        int chosenPrice = (int)verdSlider.getValue();
+        chosenPrice = (int)verdSlider.getValue();
         System.out.println(chosenPrice);
-        ArrayList<Tour> listOfTours = tourController.getAllToursCheaper(chosenPrice);
+        ArrayList<Tour> listOfTours = tourController.getFilteredTours(searchString, chosenPrice, fraDate, tilDate, chosenLandshluti, chosenLength);
         ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
         tourList.setItems(listViewTours);
     }

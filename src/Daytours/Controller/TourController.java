@@ -24,6 +24,10 @@ public class TourController {
         return db.getAllTours();
     }
 
+    public ArrayList<Tour> getFilteredTours(String name, int pri, Date start, Date end, String loc, int length) {
+        return db.getFilteredTours(name, pri, start, end, loc, length);
+    }
+
     public ArrayList<Tour> getAllToursWithMaxLength(int len){
         return db.getAllToursWithMaxLength(len);
     }

@@ -271,6 +271,40 @@ public class DataBaseManager {
         }
     }
 
+    public ArrayList<Tour> getFilteredTours(String name, int pri, Date start, Date end, String loc, int len) {
+        try {
+            ArrayList<Tour> tourList = new ArrayList<Tour>();
+            String sql = "SELECT * FROM tour WHERE tourname LIKE ? AND price <= ? AND date >= ? AND date <= ? AND location LIKE ? AND length <= ?";
+            PreparedStatement stmt = db.prepareStatement(sql);
+            stmt.setString(1, "%" + name + "%");
+            stmt.setInt(2, pri);
+            stmt.setDate(3, start);
+            stmt.setDate(4, end);
+            stmt.setString(5, loc);
+            stmt.setInt(6, len);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                String company = rs.getString("company");
+                double length = rs.getDouble("length");
+                Date date = rs.getDate("date");
+                String location = rs.getString("location");
+                String tourInfo = rs.getString("tourinfo");
+                double price = rs.getDouble("price");
+                int tourID = rs.getInt("id");
+                int participantNum = rs.getInt("participantnum");
+                String tourName = rs.getString("tourname");
+
+                Tour tour = new Tour(company, length, date, location, tourInfo, price, participantNum, tourName);
+                tour.setTourID(tourID);
+                tourList.add(tour);
+            }
+            return tourList;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
     //Tekur inn Booking hlut og setur hann í databaseið
     public void addBooking(Booking booking){
         try {
