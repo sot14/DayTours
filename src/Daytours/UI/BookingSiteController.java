@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -16,17 +16,35 @@ import java.io.IOException;
 public class BookingSiteController {
     @FXML
     public Button tilBakaButton;
+    public TextField nameField;
+    public TextField phoneNoField;
+    public TextField addressField;
+    public Button bookButton;
+    public CheckBox hotelPickupBox;
+    public TextField cardNumber;
+    public ChoiceBox day;
+    public ChoiceBox month;
+    public ChoiceBox year;
+    public Label tourNameField;
 
     BookingController bookingController;
+    ReviewSiteController reviewSiteController;
     int tourID; //sækja frá booking síðu
 
+    public BookingSiteController() {
+
+    }
+    public void showSite() {
+
+    }
     public void initialize() {
         bookingController = new BookingController();
-    }
-    public void bookTour(ActionEvent actionEvent) {
-        bookingController.bookTour(tourID);
+        tourNameField.setText("Prófun");
     }
 
+    public void setReviewSiteController(ReviewSiteController r) {
+        reviewSiteController = r;
+    }
     public void hotelPickupHandler(ActionEvent actionEvent) {
 
     }
@@ -46,5 +64,9 @@ public class BookingSiteController {
         stage2.setTitle("Nafn á völdum tour");
         stage2.setScene(new Scene(root, 600, 400));
         stage2.showAndWait();
+    }
+
+    public void bokaFerdHandler(ActionEvent actionEvent) {
+
     }
 }
