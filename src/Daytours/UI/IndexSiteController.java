@@ -1,8 +1,9 @@
 package Daytours.UI;
 import Daytours.Controller.TourController;
+import Daytours.Database.DataBaseManager;
 import Daytours.Model.Tour;
+import Daytours.UI.ReviewSiteController;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.sql.Date;
 
-public class IndexSiteController implements Initializable {
+public class IndexSiteController {
 
     @FXML
     public Slider lengdSlider;
@@ -41,14 +42,14 @@ public class IndexSiteController implements Initializable {
     @FXML
     private TextField leitaFerd;
     @FXML
-    public Button veljaFerdButton;
+    private Button veljaFerdButton;
 
     private TourController tourController;
     int tourID;
+    private Tour tour;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        tourController = new TourController();
+    public void init(DataBaseManager db) {
+        tourController = new TourController(db);
         setTourList();
         landshlutiCombobox.getItems().removeAll(landshlutiCombobox.getItems());
         landshlutiCombobox.getItems().addAll("Allt landið", "Höfuðborgarsvæðið", "Vesturland", "Vestfirðir", "Norðurland", "Austurland", "Suðurland");
@@ -68,10 +69,8 @@ public class IndexSiteController implements Initializable {
 
     // atburðar handler fyrir velja ferð takkann á forsíðu
     public void veljaFerdHandler(ActionEvent actionEvent) throws IOException {
-        //Nær í ID á Tour sem er valinn
-        tourID = tourList.getSelectionModel().getSelectedItem().getTourID();
-        String tourName = tourList.getSelectionModel().getSelectedItem().getTourName();
-        System.out.println(tourID);
+        //Nær í þann Tour sem er valinn
+        tour = tourList.getSelectionModel().getSelectedItem();
         Stage stage = (Stage) veljaFerdButton.getScene().getWindow();
         //loka núverandi glugga þ.e. tours glugga
         stage.close();
@@ -80,14 +79,13 @@ public class IndexSiteController implements Initializable {
         System.out.println(IndexSiteController.class.getResource("/Daytours/UI/ReviewSite.fxml"));
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/ReviewSite.fxml"));
-        Parent root = (Parent)fxmlLoader.load();
+        Parent root = fxmlLoader.load();
+        ReviewSiteController reviewsitecontroller = fxmlLoader.getController();
+        reviewsitecontroller.init(tour, tourController.getDb());
         Stage stage2 = new Stage();
-        stage2.initModality(Modality.APPLICATION_MODAL);
-        stage2.setOpacity(1);
-        stage2.setTitle(tourName);
+        stage2.setTitle(tour.getTourName());
         stage2.setScene(new Scene(root, 600, 400));
-        stage2.showAndWait();
-
+        stage2.show();
     }
 
 
@@ -122,6 +120,7 @@ public class IndexSiteController implements Initializable {
     public void timabilHandler(ActionEvent actionEvent) {
         LocalDate fraDate = fraDatePicker.getValue();
         LocalDate tilDate = tilDatePicker.getValue();
+
 
         // passa að búið sé að velja bæði frá og til dagsetningu
         if(fraDate != null && tilDate!=null) {

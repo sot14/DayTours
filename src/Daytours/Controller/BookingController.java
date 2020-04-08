@@ -13,7 +13,15 @@ public class BookingController {
     public Booking booking;
     public DataBaseManager db;
 
-    public void bookTour(int tourId) {
+    public BookingController(DataBaseManager db) {
+        this.db = db;
+    }
+
+    public void bookTour(Booking booking) {
         db.addBooking(booking);
+    }
+
+    public DataBaseManager getDb(){
+        return db;
     }
 }

@@ -12,8 +12,8 @@ public class TourController {
     public Tour tour;
     public DataBaseManager db;
 
-    public TourController(){
-        db = new DataBaseManager();
+    public TourController(DataBaseManager db){
+        this.db = db;
     }
 
     public Tour getTour(int tourId){
@@ -40,8 +40,7 @@ public class TourController {
     public ArrayList<Tour> searchTour(String tourName) {
         return db.searchTourName(tourName);
     }
-
-
-
-
+    public DataBaseManager getDb(){
+        return db;
+    }
 }

@@ -3,6 +3,7 @@ package Daytours.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import Daytours.Controller.TourController;
+import Daytours.Database.DataBaseManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,10 +11,11 @@ import org.junit.jupiter.api.Test;
 
 class TourControllerTest {
     private  TourController tester;
+    private DataBaseManager db = new DataBaseManager();
 
     @BeforeEach
     public void setUp() {
-        tester = new TourController();
+        tester = new TourController(db);
     }
 
     @AfterEach

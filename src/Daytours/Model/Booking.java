@@ -11,14 +11,13 @@ public class Booking {
     private String hotelAddress;
     private int bookingId;
 
-    public Booking( String phoneNo, String cardNo, int tourID, boolean hotelPickup, String participantName, int participantNo, String hotelAddress, int bookingId) {
+    public Booking( String phoneNo, String cardNo, int tourID, boolean hotelPickup, String participantName, int participantNo, String hotelAddress) {
         this.phoneNo = phoneNo;
         this.cardNo = cardNo;
         this.hotelPickup = hotelPickup;
         this.participantName = participantName;
         this.participantNo = participantNo;
         this.tourID = tourID;
-        this.bookingId = bookingId;
         this.hotelAddress = hotelAddress;
 
     }
