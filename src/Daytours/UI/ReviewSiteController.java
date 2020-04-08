@@ -30,31 +30,15 @@ import java.util.ResourceBundle;
 public class ReviewSiteController {
 
     @FXML
-    public Button bokaFerdButton;
+    private Button bokaFerdButton,tilBakaButton;
     @FXML
-    public Button tilBakaButton;
+    private Label tourNafn,company,date,length,loc,price,participants;
     @FXML
-    public Label tourNafn;
-    @FXML
-    public Label company;
-    @FXML
-    public Label date;
-    @FXML
-    public Label length;
-    @FXML
-    public Label loc;
-    @FXML
-    public TextArea info;
-    @FXML
-    public Label price;
-    @FXML
-    public Label participants;
-    @FXML
-    public TextArea reviews;
+    private TextArea info,reviews;
 
-    public Tour tour;
-    ReviewController reviewController;
-    public TourController tourController;
+    private Tour tour;
+    private ReviewController reviewController;
+    private TourController tourController;
 
     public void init(Tour tour, DataBaseManager db){
         this.tour = tour;

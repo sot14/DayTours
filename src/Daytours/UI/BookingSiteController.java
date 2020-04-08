@@ -17,10 +17,10 @@ import java.io.IOException;
 
 public class BookingSiteController {
     @FXML
-    public Button tilBakaButton;
+    private Button tilBakaButton;
 
-    BookingController bookingController;
-    Tour tour;
+    private BookingController bookingController;
+    private Tour tour;
 
     public void init(Tour tour, DataBaseManager db) {
         bookingController = new BookingController(db);

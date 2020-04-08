@@ -33,9 +33,9 @@ public class IndexSiteController {
     @FXML
     private TextField leitaFerd;
     @FXML
-    public Button veljaFerdButton;
+    private Button veljaFerdButton;
 
-    Tour tour;
+    private Tour tour;
 
     public void init(DataBaseManager db) {
         tourController = new TourController(db);
