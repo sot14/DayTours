@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -27,43 +27,36 @@ public class BookingSiteController {
     public ChoiceBox year;
     public Label tourNameField;
 
-    BookingController bookingController;
-    ReviewSiteController reviewSiteController;
-    int tourID; //sækja frá booking síðu
+    private BookingController bookingController;
+    private Tour tour;
 
-    public BookingSiteController() {
-
+    public void init(Tour tour, DataBaseManager db) {
+        bookingController = new BookingController(db);
+        this.tour = tour;
     }
-    public void showSite() {
-
-    }
-    public void initialize() {
-        bookingController = new BookingController();
-        tourNameField.setText("Prófun");
+    public void bookTour(ActionEvent actionEvent) {
+        //bookingController.bookTour(booking);
     }
 
-    public void setReviewSiteController(ReviewSiteController r) {
-        reviewSiteController = r;
-    }
     public void hotelPickupHandler(ActionEvent actionEvent) {
 
     }
 
     public void tilBakaHandler(ActionEvent actionEvent) throws IOException {
-        //loka núverandi glugga þ.e. tour/review glugga
+        //loka núverandi glugga þ.e. booking glugga
         Stage stage = (Stage) tilBakaButton.getScene().getWindow();
         stage.close();
 
-        //opna fyrrverandi glugga þ.e. index glugga
+        //opna fyrrverandi glugga þ.e. review glugga
         System.out.println(IndexSiteController.class.getResource("/Daytours/UI/ReviewSite.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/ReviewSite.fxml"));
-        Parent root = (Parent)fxmlLoader.load();
+        Parent root = fxmlLoader.load();
+        ReviewSiteController controller = fxmlLoader.getController();
+        controller.init(tour, bookingController.getDb());
         Stage stage2 = new Stage();
-        stage2.initModality(Modality.APPLICATION_MODAL);
-        stage2.setOpacity(1);
-        stage2.setTitle("Nafn á völdum tour");
+        stage2.setTitle(tour.getTourName());
         stage2.setScene(new Scene(root, 600, 400));
-        stage2.showAndWait();
+        stage2.show();
     }
 
     public void bokaFerdHandler(ActionEvent actionEvent) {

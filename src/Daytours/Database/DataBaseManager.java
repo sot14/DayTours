@@ -31,8 +31,9 @@ public class DataBaseManager {
         try {
             String sql = "INSERT INTO tour values (?,?,?,?,?,?,?,?,?)";
             PreparedStatement stmt = db.prepareStatement(sql);
+            int id = getNewTourId();
 
-            stmt.setInt(1, tour.getTourID());
+            stmt.setInt(1, id);
             stmt.setString(2, tour.getCompany());
             stmt.setDate(3, tour.getDate());
             stmt.setDouble(4, tour.getLength());
@@ -67,7 +68,9 @@ public class DataBaseManager {
             int participantNum = rs.getInt("participantnum");
             String tourName = rs.getString("tourname");
 
-            return new Tour(company, length, date, location, tourInfo, price, tourID, participantNum, tourName);
+            Tour tour = new Tour(company, length, date, location, tourInfo, price, participantNum, tourName);
+            tour.setTourID(tourID);
+            return tour;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return null;
@@ -93,7 +96,9 @@ public class DataBaseManager {
                 int participantNum = rs.getInt("participantnum");
                 String tourName = rs.getString("tourname");
 
-                tourList.add(new Tour(company, length, date, location, tourInfo, price, tourID, participantNum, tourName));
+                Tour tour = new Tour(company, length, date, location, tourInfo, price, participantNum, tourName);
+                tour.setTourID(tourID);
+                tourList.add(tour);
             }
 
             return tourList;
@@ -123,7 +128,9 @@ public class DataBaseManager {
                 int participantNum = rs.getInt("participantnum");
                 String tourName = rs.getString("tourname");
 
-                tourList.add(new Tour(company, length, date, location, tourInfo, price, tourID, participantNum, tourName));
+                Tour tour = new Tour(company, length, date, location, tourInfo, price, participantNum, tourName);
+                tour.setTourID(tourID);
+                tourList.add(tour);
             }
 
             return tourList;
@@ -138,8 +145,9 @@ public class DataBaseManager {
         try {
             String sql = "INSERT INTO booking values (?,?,?,?,?,?,?,?)";
             PreparedStatement stmt = db.prepareStatement(sql);
+            int id = getNewBookingId();
 
-            stmt.setInt(1, booking.getBookingId());
+            stmt.setInt(1, id);
             stmt.setString(2, booking.getPhoneNo());
             stmt.setString(3, booking.getCardNo());
             stmt.setBoolean(4, booking.isHotelPickup());
@@ -172,7 +180,9 @@ public class DataBaseManager {
             int participantNo = rs.getInt("participantno");
             String hotelAddress = rs.getString("hoteladdress");
 
-            return new Booking(phoneNo, cardNo, tourID, hotelPickup, participant, participantNo, hotelAddress, bookingId);
+            Booking booking = new Booking(phoneNo, cardNo, tourID, hotelPickup, participant, participantNo, hotelAddress);
+            booking.setBookingId(bookingId);
+            return booking;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return null;
@@ -215,6 +225,34 @@ public class DataBaseManager {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return null;
+        }
+    }
+
+    public int getNewTourId(){
+        try {
+            String sql = "SELECT MAX(id) FROM tour";
+            PreparedStatement stmt = db.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            int id = rs.getInt(1);
+            return ++id;
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            return 0;
+        }
+    }
+
+    public int getNewBookingId(){
+        try {
+            String sql = "SELECT MAX(id) FROM booking";
+            PreparedStatement stmt = db.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            int id = rs.getInt(1);
+            return ++id;
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            return 0;
         }
     }
 }
