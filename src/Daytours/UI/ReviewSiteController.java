@@ -2,6 +2,7 @@ package Daytours.UI;
 
 import Daytours.Controller.ReviewController;
 import Daytours.Controller.TourController;
+import Daytours.Model.Review;
 import Daytours.Model.Tour;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,11 +15,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -39,11 +43,13 @@ public class ReviewSiteController implements Initializable {
     @FXML
     public Label loc;
     @FXML
-    public Label info;
+    public TextArea info;
     @FXML
     public Label price;
     @FXML
     public Label participants;
+    @FXML
+    public TextArea reviews;
 
     public Tour tour;
     ReviewController reviewController;
@@ -62,7 +68,29 @@ public class ReviewSiteController implements Initializable {
 
     public void synaTour() {
         tourNafn.setText(tour.getTourName());
-        //...
+        company.setText(tour.getCompany());
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        String strDate = dateFormat.format(tour.getDate());
+        date.setText(strDate);
+
+        String lengd = String.valueOf(tour.getLength());
+        length.setText(lengd + " klst.");
+
+        loc.setText(tour.getLocation());
+
+        info.setText(tour.getTourInfo());
+        info.setWrapText(true);
+
+        String verd = String.valueOf(tour.getPrice());
+        price.setText(verd + " kr");
+
+        String fjoldi = String.valueOf(tour.getParticipantNum());
+        participants.setText(fjoldi);
+    }
+
+    public void synaReview() {
+
     }
 
 
