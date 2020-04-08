@@ -12,14 +12,13 @@ public class Tour {
     private int participantNum;
     private String tourName;
 
-    public Tour(String company, double length, Date date, String location, String tourInfo, double price, int tourID, int participantNum, String tourName) {
+    public Tour(String company, double length, Date date, String location, String tourInfo, double price, int participantNum, String tourName) {
         this.company = company;
         this.length = length;
         this.date = date;
         this.location = location;
         this.tourInfo = tourInfo;
         this.price = price;
-        this.tourID = tourID;
         this.participantNum = participantNum;
         this.tourName = tourName;
     }
