@@ -130,7 +130,9 @@ public class DataBaseManager {
                 int participantNum = rs.getInt("participantnum");
                 String tourName = rs.getString("tourname");
 
-                tourList.add(new Tour(company, length, date, location, tourInfo, price, tourID, participantNum, tourName));
+                Tour tour = new Tour(company, length, date, location, tourInfo, price, participantNum, tourName);
+                tour.setTourID(tourID);
+                tourList.add(tour);
             }
 
             return tourList;
@@ -160,7 +162,9 @@ public class DataBaseManager {
                 int participantNum = rs.getInt("participantnum");
                 String tourName = rs.getString("tourname");
 
-                tourList.add(new Tour(company, length, date, location, tourInfo, price, tourID, participantNum, tourName));
+                Tour tour = new Tour(company, length, date, location, tourInfo, price, participantNum, tourName);
+                tour.setTourID(tourID);
+                tourList.add(tour);
             }
 
             return tourList;
@@ -190,7 +194,9 @@ public class DataBaseManager {
                 int participantNum = rs.getInt("participantnum");
                 String tourName = rs.getString("tourname");
 
-                tourList.add(new Tour(company, length, date, location, tourInfo, price, tourID, participantNum, tourName));
+                Tour tour = new Tour(company, length, date, location, tourInfo, price, participantNum, tourName);
+                tour.setTourID(tourID);
+                tourList.add(tour);
             }
 
             return tourList;
@@ -221,7 +227,9 @@ public class DataBaseManager {
                 int participantNum = rs.getInt("participantnum");
                 String tourName = rs.getString("tourname");
 
-                tourList.add(new Tour(company, length, date, location, tourInfo, price, tourID, participantNum, tourName));
+                Tour tour = new Tour(company, length, date, location, tourInfo, price, participantNum, tourName);
+                tour.setTourID(tourID);
+                tourList.add(tour);
             }
 
             return tourList;
