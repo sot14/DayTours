@@ -13,10 +13,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -34,17 +32,29 @@ public class ReviewSiteController {
     @FXML
     private Label tourNafn,company,date,length,loc,price,participants;
     @FXML
-    private TextArea info,reviews;
+    private TextArea info;
+    @FXML
+    private TableView<Review> reviews;
+    @FXML
+    private TableColumn<Review,String> name;
+    @FXML
+    private TableColumn<Review,String> reviewText;
 
+    private DataBaseManager db;
     private Tour tour;
     private ReviewController reviewController;
     private TourController tourController;
+    private Review review;
+
 
     public void init(Tour tour, DataBaseManager db){
         this.tour = tour;
         reviewController = new ReviewController(db);
         tourController = new TourController(db);
         synaTour();
+        synaReview();
+        reviews.setFixedCellSize(60.0);
+
     }
 
     public void synaTour() {
@@ -68,9 +78,18 @@ public class ReviewSiteController {
 
         String fjoldi = String.valueOf(tour.getParticipantNum());
         participants.setText(fjoldi);
+
     }
 
     public void synaReview() {
+        int tourId = tour.getTourID();
+        ArrayList<Review> listOfReviews = reviewController.getAllReviews(tourId);
+        ObservableList<Review> listViewReviews = FXCollections.observableArrayList(listOfReviews);
+        reviews.setItems(listViewReviews);
+        name.setCellValueFactory(
+                new PropertyValueFactory<Review,String>("name"));
+        reviewText.setCellValueFactory(
+                new PropertyValueFactory<Review,String>("reviewText"));
 
     }
 
