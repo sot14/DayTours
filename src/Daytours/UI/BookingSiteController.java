@@ -1,5 +1,7 @@
 package Daytours.UI;
 
+import Daytours.Database.DataBaseManager;
+import Daytours.Model.Tour;
 import javafx.event.ActionEvent;
 import Daytours.Controller.BookingController;
 import javafx.fxml.FXML;
@@ -18,13 +20,14 @@ public class BookingSiteController {
     public Button tilBakaButton;
 
     BookingController bookingController;
-    int tourID; //sækja frá booking síðu
+    Tour tour;
 
-    public void initialize() {
-        bookingController = new BookingController();
+    public void init(Tour tour, DataBaseManager db) {
+        bookingController = new BookingController(db);
+        this.tour = tour;
     }
     public void bookTour(ActionEvent actionEvent) {
-        bookingController.bookTour(tourID);
+        //bookingController.bookTour(booking);
     }
 
     public void hotelPickupHandler(ActionEvent actionEvent) {
@@ -32,19 +35,19 @@ public class BookingSiteController {
     }
 
     public void tilBakaHandler(ActionEvent actionEvent) throws IOException {
-        //loka núverandi glugga þ.e. tour/review glugga
+        //loka núverandi glugga þ.e. booking glugga
         Stage stage = (Stage) tilBakaButton.getScene().getWindow();
         stage.close();
 
-        //opna fyrrverandi glugga þ.e. index glugga
+        //opna fyrrverandi glugga þ.e. review glugga
         System.out.println(IndexSiteController.class.getResource("/Daytours/UI/ReviewSite.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/ReviewSite.fxml"));
-        Parent root = (Parent)fxmlLoader.load();
+        Parent root = fxmlLoader.load();
+        ReviewSiteController controller = fxmlLoader.getController();
+        controller.init(tour, bookingController.getDb());
         Stage stage2 = new Stage();
-        stage2.initModality(Modality.APPLICATION_MODAL);
-        stage2.setOpacity(1);
-        stage2.setTitle("Nafn á völdum tour");
+        stage2.setTitle(tour.getTourName());
         stage2.setScene(new Scene(root, 600, 400));
-        stage2.showAndWait();
+        stage2.show();
     }
 }

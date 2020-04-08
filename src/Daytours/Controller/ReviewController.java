@@ -8,6 +8,10 @@ public class ReviewController {
     public Review review;
     public DataBaseManager db;
 
+    public ReviewController(DataBaseManager db) {
+        this.db = db;
+    }
+
     public void addReview() {
         db.addReview(review);
     }

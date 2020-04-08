@@ -1,5 +1,6 @@
 package Daytours.UI;
 import Daytours.Controller.TourController;
+import Daytours.Database.DataBaseManager;
 import Daytours.Model.Tour;
 import Daytours.UI.ReviewSiteController;
 
@@ -22,7 +23,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class IndexSiteController implements Initializable {
+public class IndexSiteController {
 
 
     private TourController tourController;
@@ -36,9 +37,8 @@ public class IndexSiteController implements Initializable {
 
     Tour tour;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        tourController = new TourController();
+    public void init(DataBaseManager db) {
+        tourController = new TourController(db);
         setTourList();
     }
 
@@ -66,14 +66,11 @@ public class IndexSiteController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/ReviewSite.fxml"));
         Parent root = fxmlLoader.load();
         ReviewSiteController reviewsitecontroller = fxmlLoader.getController();
-        reviewsitecontroller.setTour(tour);
+        reviewsitecontroller.init(tour, tourController.getDb());
         Stage stage2 = new Stage();
-        stage2.initModality(Modality.APPLICATION_MODAL);
-        stage2.setOpacity(1);
         stage2.setTitle(tour.getTourName());
         stage2.setScene(new Scene(root, 600, 400));
-        stage2.showAndWait();
-
+        stage2.show();
     }
 
     public void leitaFerdHandler(ActionEvent actionEvent) {
@@ -82,7 +79,4 @@ public class IndexSiteController implements Initializable {
         updateTour(FXCollections.observableArrayList(listOfTours));
 
     }
-
-
-
 }

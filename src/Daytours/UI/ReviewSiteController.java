@@ -2,6 +2,7 @@ package Daytours.UI;
 
 import Daytours.Controller.ReviewController;
 import Daytours.Controller.TourController;
+import Daytours.Database.DataBaseManager;
 import Daytours.Model.Review;
 import Daytours.Model.Tour;
 import javafx.collections.FXCollections;
@@ -26,7 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ReviewSiteController implements Initializable {
+public class ReviewSiteController {
 
     @FXML
     public Button bokaFerdButton;
@@ -55,14 +56,10 @@ public class ReviewSiteController implements Initializable {
     ReviewController reviewController;
     public TourController tourController;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        reviewController = new ReviewController();
-        tourController = new TourController();
-    }
-
-    public void setTour(Tour tour){
+    public void init(Tour tour, DataBaseManager db){
         this.tour = tour;
+        reviewController = new ReviewController(db);
+        tourController = new TourController(db);
         synaTour();
     }
 
@@ -102,13 +99,13 @@ public class ReviewSiteController implements Initializable {
         //opna næsta glugga þ.e. booking glugga
         System.out.println(IndexSiteController.class.getResource("/Daytours/UI/BookingSite.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/BookingSite.fxml"));
-        Parent root = (Parent)fxmlLoader.load();
+        Parent root = fxmlLoader.load();
+        BookingSiteController controller = fxmlLoader.getController();
+        controller.init(tour, tourController.getDb());
         Stage stage2 = new Stage();
-        stage2.initModality(Modality.APPLICATION_MODAL);
-        stage2.setOpacity(1);
         stage2.setTitle("Bóka tour");
         stage2.setScene(new Scene(root, 600, 400));
-        stage2.showAndWait();
+        stage2.show();
     }
 
     public void tilBakaHandler(ActionEvent actionEvent) throws IOException {
@@ -119,12 +116,12 @@ public class ReviewSiteController implements Initializable {
         //opna fyrrverandi glugga þ.e. index glugga
         System.out.println(IndexSiteController.class.getResource("/Daytours/UI/IndexSite.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/IndexSite.fxml"));
-        Parent root = (Parent)fxmlLoader.load();
+        Parent root = fxmlLoader.load();
+        IndexSiteController controller = fxmlLoader.getController();
+        controller.init(tourController.getDb());
         Stage stage2 = new Stage();
-        stage2.initModality(Modality.APPLICATION_MODAL);
-        stage2.setOpacity(1);
-        stage2.setTitle("Daytours");
-        stage2.setScene(new Scene(root, 910, 610));
-        stage2.showAndWait();
+        stage2.setTitle("Dagsferðir ehf");
+        stage2.setScene(new Scene(root, 900, 600));
+        stage2.show();
     }
 }
