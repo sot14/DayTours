@@ -237,7 +237,7 @@ public class ReviewSiteController {
             stage.close();
 
             //opna næsta glugga þ.e. booking glugga
-            System.out.println(IndexSiteController.class.getResource("/Daytours/UI/BookingSite.fxml"));
+            //System.out.println(IndexSiteController.class.getResource("/Daytours/UI/BookingSite.fxml"));
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/BookingSite.fxml"));
             Parent root = fxmlLoader.load();
             BookingSiteController controller = fxmlLoader.getController();
@@ -259,7 +259,7 @@ public class ReviewSiteController {
         stage.close();
 
         //opna fyrrverandi glugga þ.e. index glugga
-        System.out.println(IndexSiteController.class.getResource("/Daytours/UI/IndexSite.fxml"));
+       // System.out.println(IndexSiteController.class.getResource("/Daytours/UI/IndexSite.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/IndexSite.fxml"));
         Parent root = fxmlLoader.load();
         IndexSiteController controller = fxmlLoader.getController();
