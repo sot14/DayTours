@@ -20,6 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
@@ -104,8 +105,33 @@ public class ReviewSiteController {
                 new PropertyValueFactory<Review,String>("name"));
         reviewText.setCellValueFactory(
                 new PropertyValueFactory<Review,String>("reviewText"));
+        reviewText.setCellFactory(WRAPPING_CELL_FACTORY);
 
     }
+
+    public static final Callback<TableColumn<Review,String>, TableCell<Review,String>> WRAPPING_CELL_FACTORY =
+            new Callback<TableColumn<Review,String>, TableCell<Review,String>>() {
+
+                @Override public TableCell<Review,String> call(TableColumn<Review,String> param) {
+                    TableCell<Review,String> tableCell = new TableCell<Review,String>() {
+                        @Override protected void updateItem(String item, boolean empty) {
+                            if (item == getItem()) return;
+
+                            super.updateItem(item, empty);
+
+                            if (item == null) {
+                                super.setText(null);
+                                super.setGraphic(null);
+                            } else {
+                                super.setText(item);
+                                super.setGraphic(null);
+                            }
+                        }
+                    };
+                    tableCell.setWrapText(true);
+                    return tableCell;
+                }
+            };
 
     public void bokaFerdHandler(ActionEvent actionEvent) throws IOException {
         final Stage popup = new Stage();

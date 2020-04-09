@@ -21,12 +21,12 @@
          <font>
             <Font name="System Italic" size="13.0" />
          </font></Label>
-      <Label layoutX="39.0" layoutY="105.0" text="Dagsetning" />
-      <Label layoutX="135.0" layoutY="105.0" text="Lengd" />
-      <Label layoutX="207.0" layoutY="105.0" text="Staðsetning" />
-      <Label fx:id="date" layoutX="39.0" layoutY="125.0" prefHeight="17.0" prefWidth="91.0" text="date" />
-      <Label fx:id="length" layoutX="135.0" layoutY="125.0" text="xxx klst" />
-      <Label fx:id="loc" layoutX="207.0" layoutY="125.0" text="Location" />
+      <Label layoutX="39.0" layoutY="270.0" text="Dagsetning" />
+      <Label layoutX="145.0" layoutY="270.0" text="Lengd" />
+      <Label layoutX="215.0" layoutY="270.0" text="Staðsetning" />
+      <Label fx:id="date" layoutX="39.0" layoutY="290.0" prefHeight="17.0" prefWidth="91.0" text="date" />
+      <Label fx:id="length" layoutX="135.0" layoutY="290.0" text="xxx klst" />
+      <Label fx:id="loc" layoutX="215.0" layoutY="290.0" text="Location" />
       <Label layoutX="39.0" layoutY="320.0" text="Um ferðina" />
       <Label fx:id="price" layoutX="39.0" layoutY="520.0" text="xxx kr" />
       <Label layoutX="145.0" layoutY="520.0" text="Sæti eftir" />
