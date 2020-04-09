@@ -13,11 +13,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -46,6 +49,7 @@ public class IndexSiteController {
 
     private TourController tourController;
     int tourID;
+
     private Tour tour;
     String searchString = "";
     int chosenLength = 12;
@@ -54,12 +58,20 @@ public class IndexSiteController {
     Date tilDate = Date.valueOf("2050-01-01");
     int chosenPrice = 17000;
 
+
     public void init(DataBaseManager db) {
         tourController = new TourController(db);
         setTourList();
         landshlutiCombobox.getItems().removeAll(landshlutiCombobox.getItems());
         landshlutiCombobox.getItems().addAll("Allt landið", "Höfuðborgarsvæðið", "Vesturland", "Vestfirðir", "Norðurland", "Austurland", "Suðurland");
         landshlutiCombobox.getSelectionModel().select("Allt landið");
+
+        leitaFerd.textProperty().addListener((observable, oldValue, newValue) -> {
+            searchString=leitaFerd.getText();
+            ArrayList<Tour> listOfTours = tourController.getFilteredTours(searchString, chosenPrice, fraDate, tilDate, chosenLandshluti, chosenLength);
+            ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
+            tourList.setItems(listViewTours);
+        });
     }
 
     public void setTourList(){
@@ -92,14 +104,6 @@ public class IndexSiteController {
         stage2.setTitle(tour.getTourName());
         stage2.setScene(new Scene(root, 900, 750));
         stage2.show();
-    }
-
-
-    public void leitaFerdHandler(ActionEvent actionEvent) {
-        searchString = leitaFerd.getText();
-        ArrayList<Tour> listOfTours = tourController.getFilteredTours(searchString, chosenPrice, fraDate, tilDate, chosenLandshluti, chosenLength);
-        ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
-        tourList.setItems(listViewTours);
     }
 
     // atburðarhandler á sleðanum sem notaður er til að velja hámarkslengd ferða
@@ -154,4 +158,6 @@ public class IndexSiteController {
         ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
         tourList.setItems(listViewTours);
     }
+
+
 }
