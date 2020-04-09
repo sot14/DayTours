@@ -78,20 +78,15 @@ public class IndexSiteController {
     int chosenPrice = 17000;
 
 
-    /*
-    public Image AlltLandiðImg = new Image(getClass().getResourceAsStream("AlltLandið.png"));
 
-     */
+    public Image AlltLandiðImg = new Image("Daytours/Img/AlltLandid.png");
     public Image AusturlandImg = new Image("Daytours/Img/Austurland.png");
+    public Image HöfuðborgarsvæðiðImg = new Image("Daytours/Img/Hofudborgarsvaedid.png");
+    public Image NorðurlandImg = new Image("Daytours/Img/Nordurland.png");
+    public Image SuðurlandImg = new Image("Daytours/Img/Sudurland.png");
+    public Image VestfirðirImg = new Image("Daytours/Img/Vestfirdir.png");
+    public Image VesturlandImg = new Image("Daytours/Img/Vesturland.png");
 
-
-    /*
-    public Image HöfuðborgarsvæðiðImg = new Image(getClass().getResourceAsStream("src/Daytours/Img/Höfuðborgarsvæðið.png"));
-    private Image NorðurlandImg = new Image("src/Daytours/Img/Norðurland.png");
-    private Image SuðurlandImg = new Image("src/Daytours/Img/Suðurland.png");
-    private Image VestfirðirImg = new Image("src/Daytours/Img/Vestfirðir.png");
-    private Image VesturlandImg = new Image("src/Daytours/Img/Vesturland.png");
-     */
 
 
     public void init(DataBaseManager db) {
@@ -170,23 +165,25 @@ public class IndexSiteController {
 
         switch(chosenLandshluti) {
             case "Allt landið":
-               // landshlutiMynd = new ImageView(AlltLandiðImg);
+                landshlutiMynd.setImage(AlltLandiðImg);
                 break;
             case "Austurland":
-                //landshlutiMynd.setImage(AusturlandImg);
-                System.out.println(landshlutiMynd.toString());
-                System.out.println(getClass().getResource("src/Daytours/Img/Austurland.png"));
+                landshlutiMynd.setImage(AusturlandImg);
                 break;
             case "Höfuðborgarsvæðið":
-               // landshlutiMynd = new ImageView(HöfuðborgarsvæðiðImg);
+                landshlutiMynd.setImage(HöfuðborgarsvæðiðImg);
                 break;
             case "Norðurland":
+                landshlutiMynd.setImage(NorðurlandImg);
                 break;
             case "Suðurland":
+                landshlutiMynd.setImage(SuðurlandImg);
                 break;
             case "Vestfirðir":
+                landshlutiMynd.setImage(VestfirðirImg);
                 break;
             case "Vesturland":
+                landshlutiMynd.setImage(VesturlandImg);
                 break;
         }
 

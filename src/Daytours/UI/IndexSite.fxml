@@ -62,7 +62,7 @@
          <graphic>
             <ImageView fx:id="landshlutiMynd" fitHeight="169.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Img/AlltLandið.png" />
+                  <Image url="@../Img/AlltLandid.png" />
                </image></ImageView>
          </graphic>
       </Label>
