@@ -88,7 +88,7 @@ public class ReviewSiteController {
         synaTour();
         synaReview();
         synaMynd();
-        reviews.setFixedCellSize(70.0);
+        reviews.setFixedCellSize(80.0);
         wReview.setWrapText(true);
         wReview.setWrapText(true);
 
@@ -286,10 +286,11 @@ public class ReviewSiteController {
         if (this.nafn.length() <= 0) popUpMessage = new Text("Vinsamlegast skrifið nafnið ykkar");
         else if (this.reviewTexti.length() <= 0) popUpMessage = new Text("Vinsamlegast skrifið inn ummæli");
         else {
-            popUpMessage = new Text("Ummæli móttekin, takk fyrir");
+            popUpMessage = new Text(" Ummæli móttekin, takk fyrir");
             reviewController.addReview(review);
             wName.clear();
             wReview.clear();
+            synaReview();
         }
 
         dialogVbox.getChildren().add(popUpMessage);
