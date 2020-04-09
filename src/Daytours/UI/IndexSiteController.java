@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -50,7 +51,10 @@ public class IndexSiteController {
     public Label lengthLabel;
     @FXML
     public Label priceLabel;
+    @FXML
     public Button afbokaFerdButton;
+    @FXML
+    public ImageView landshlutiMynd;
     @FXML
     private ListView <Tour> tourList;
     @FXML
@@ -204,5 +208,8 @@ public class IndexSiteController {
 
     public void afbokaFerd(ActionEvent actionEvent) {
 
+    }
+
+    public void landshlutiMyndHandler(MouseEvent mouseEvent) {
     }
 }
