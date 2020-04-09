@@ -15,12 +15,13 @@ public class ReviewController {
         this.db = db;
     }
 
-    public void addReview() {
+    public void addReview(Review review) {
         db.addReview(review);
     }
 
     public ArrayList<Review> getAllReviews(int tourID){
         return db.getReviews(tourID);
     }
+
 
 }

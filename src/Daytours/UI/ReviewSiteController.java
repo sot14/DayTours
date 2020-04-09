@@ -15,6 +15,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -28,6 +31,10 @@ import java.util.ResourceBundle;
 public class ReviewSiteController {
 
     @FXML
+    public TextArea wReview;
+    @FXML
+    public TextField wName;
+    @FXML
     private Button bokaFerdButton,tilBakaButton;
     @FXML
     private Label tourNafn,company,date,length,loc,price,participants;
@@ -39,12 +46,17 @@ public class ReviewSiteController {
     private TableColumn<Review,String> name;
     @FXML
     private TableColumn<Review,String> reviewText;
+    public String nafn;
+    public String reviewTexti;
+    public Review review;
+    public int tourId;
+    public Text popUpMessage;
 
     private DataBaseManager db;
     private Tour tour;
     private ReviewController reviewController;
     private TourController tourController;
-    private Review review;
+
 
 
     public void init(Tour tour, DataBaseManager db){
@@ -54,6 +66,8 @@ public class ReviewSiteController {
         synaTour();
         synaReview();
         reviews.setFixedCellSize(60.0);
+        wReview.setWrapText(true);
+        wReview.setWrapText(true);
 
     }
 
@@ -82,7 +96,7 @@ public class ReviewSiteController {
     }
 
     public void synaReview() {
-        int tourId = tour.getTourID();
+        tourId = tour.getTourID();
         ArrayList<Review> listOfReviews = reviewController.getAllReviews(tourId);
         ObservableList<Review> listViewReviews = FXCollections.observableArrayList(listOfReviews);
         reviews.setItems(listViewReviews);
@@ -93,22 +107,36 @@ public class ReviewSiteController {
 
     }
 
-
     public void bokaFerdHandler(ActionEvent actionEvent) throws IOException {
-        //loka núverandi glugga þ.e. tour/review glugga
-        Stage stage = (Stage) bokaFerdButton.getScene().getWindow();
-        stage.close();
+        final Stage popup = new Stage();
+        popup.initModality(Modality.APPLICATION_MODAL);
+        //popup.initOwner(primaryStage);
+        VBox dialogVbox = new VBox(20);
 
-        //opna næsta glugga þ.e. booking glugga
-        System.out.println(IndexSiteController.class.getResource("/Daytours/UI/BookingSite.fxml"));
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/BookingSite.fxml"));
-        Parent root = fxmlLoader.load();
-        BookingSiteController controller = fxmlLoader.getController();
-        controller.init(tour, tourController.getDb());
-        Stage stage2 = new Stage();
-        stage2.setTitle("Bóka tour");
-        stage2.setScene(new Scene(root, 600, 400));
-        stage2.show();
+        if (tour.getParticipantNum() == 0) {
+            popUpMessage = new Text("Ferðin er uppbókuð");
+            bokaFerdButton.setDisable(true);
+        }
+        else {
+            //loka núverandi glugga þ.e. tour/review glugga
+            Stage stage = (Stage) bokaFerdButton.getScene().getWindow();
+            stage.close();
+
+            //opna næsta glugga þ.e. booking glugga
+            System.out.println(IndexSiteController.class.getResource("/Daytours/UI/BookingSite.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/BookingSite.fxml"));
+            Parent root = fxmlLoader.load();
+            BookingSiteController controller = fxmlLoader.getController();
+            controller.init(tour, tourController.getDb());
+            Stage stage2 = new Stage();
+            stage2.setTitle("Bóka tour");
+            stage2.setScene(new Scene(root, 600, 400));
+            stage2.show();
+        }
+        dialogVbox.getChildren().add(popUpMessage);
+        Scene dialogScene = new Scene(dialogVbox, 200, 100);
+        popup.setScene(dialogScene);
+        popup.show();
     }
 
     public void tilBakaHandler(ActionEvent actionEvent) throws IOException {
@@ -126,5 +154,33 @@ public class ReviewSiteController {
         stage2.setTitle("Dagsferðir ehf");
         stage2.setScene(new Scene(root, 900, 600));
         stage2.show();
+    }
+
+    public void sendaHandler(ActionEvent actionEvent) {
+        nafn = wName.getText();
+        reviewTexti = wReview.getText();
+        review = new Review(tourId,reviewTexti,nafn);
+        checkWriteReview();
+    }
+
+    private void checkWriteReview() {
+        final Stage popup = new Stage();
+        popup.initModality(Modality.APPLICATION_MODAL);
+        //popup.initOwner(primaryStage);
+        VBox dialogVbox = new VBox(20);
+
+        if (this.nafn.length() <= 0) popUpMessage = new Text("Vinsamlegast skrifið nafnið ykkar");
+        else if (this.reviewTexti.length() <= 0) popUpMessage = new Text("Vinsamlegast skrifið inn ummæli");
+        else {
+            popUpMessage = new Text("Ummæli móttekin, takk fyrir");
+            reviewController.addReview(review);
+            wName.clear();
+            wReview.clear();
+        }
+
+        dialogVbox.getChildren().add(popUpMessage);
+        Scene dialogScene = new Scene(dialogVbox, 200, 100);
+        popup.setScene(dialogScene);
+        popup.show();
     }
 }
