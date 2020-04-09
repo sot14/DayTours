@@ -76,8 +76,9 @@ public class ReviewSiteController {
         tourNafn.setText(tour.getTourName());
         company.setText(tour.getCompany());
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-        String strDate = dateFormat.format(tour.getDate());
+
+
+        String strDate = (tour.getDate()).toString();
         date.setText(strDate);
 
         String lengd = String.valueOf(tour.getLength());

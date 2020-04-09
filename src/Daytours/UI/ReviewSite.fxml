@@ -29,24 +29,24 @@
       <Label fx:id="loc" layoutX="215.0" layoutY="290.0" text="Location" />
       <Label layoutX="39.0" layoutY="320.0" text="Um ferðina" />
       <Label fx:id="price" layoutX="39.0" layoutY="520.0" text="xxx kr" />
-      <Label layoutX="145.0" layoutY="520.0" text="Sæti eftir" />
+      <Label layoutX="145.0" layoutY="520.0" text="Pláss eftir:" />
       <Label fx:id="participants" layoutX="207.0" layoutY="520.0" text="xx" />
       <TextArea fx:id="info" editable="false" layoutX="39.0" layoutY="350.0" prefHeight="116.0" prefWidth="245.0" />
       <TableView fx:id="reviews" layoutX="368.0" layoutY="89.0" prefHeight="239.0" prefWidth="479.0">
         <columns>
-          <TableColumn fx:id="name" prefWidth="137.0" text="Nafn" />
-          <TableColumn fx:id="reviewText" prefWidth="341.0" text="Review" />
+          <TableColumn fx:id="name" prefWidth="153.0" text="Nafn" />
+          <TableColumn fx:id="reviewText" prefWidth="325.0" text="Review" />
         </columns>
       </TableView>
-      <Label layoutX="368.0" layoutY="400.0" text="Skrifa reviews">
+      <Label layoutX="368.0" layoutY="385.0" text="Skrifa reviews">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="368.0" layoutY="445.0" text="Nafn:" />
-      <TextField fx:id="wName" layoutX="420.0" layoutY="440.0" prefHeight="27.0" prefWidth="186.0" />
-      <Label layoutX="368.0" layoutY="489.0" text="Ummæli" />
-      <TextArea fx:id="wReview" layoutX="420.0" layoutY="490.0" prefHeight="103.0" prefWidth="186.0" />
-      <Button layoutX="619.0" layoutY="566.0" mnemonicParsing="false" onAction="#sendaHandler" text="Senda" />
+      <Label layoutX="368.0" layoutY="432.0" text="Nafn:" />
+      <TextField fx:id="wName" layoutX="420.0" layoutY="427.0" prefHeight="27.0" prefWidth="186.0" />
+      <Label layoutX="344.0" layoutY="484.0" prefHeight="17.0" prefWidth="57.0" text="Ummæli:" />
+      <TextArea fx:id="wReview" layoutX="420.0" layoutY="477.0" prefHeight="103.0" prefWidth="186.0" />
+      <Button layoutX="620.0" layoutY="553.0" mnemonicParsing="false" onAction="#sendaHandler" text="Senda" />
    </children>
 </AnchorPane>
