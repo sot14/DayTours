@@ -97,10 +97,8 @@ public class IndexSiteController {
 
     public void leitaFerdHandler(ActionEvent actionEvent) {
         searchString = leitaFerd.getText();
-        //ArrayList<Tour> listOfTours = tourController.searchTour(searchString);
         ArrayList<Tour> listOfTours = tourController.getFilteredTours(searchString, chosenPrice, fraDate, tilDate, chosenLandshluti, chosenLength);
         ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
-        //updateTour(FXCollections.observableArrayList(listOfTours));
         tourList.setItems(listViewTours);
     }
 
@@ -111,22 +109,16 @@ public class IndexSiteController {
         ArrayList<Tour> listOfTours = tourController.getFilteredTours(searchString, chosenPrice, fraDate, tilDate, chosenLandshluti, chosenLength);
         ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
         tourList.setItems(listViewTours);
-        System.out.println(searchString);
-        System.out.println(fraDate);
-        System.out.println(tilDate);
-        System.out.println(chosenLength);
     }
 
     // atburðahandler fyrir hvaða landshluti er valinn
     public void landshlutiHandler(ActionEvent actionEvent) {
         chosenLandshluti = landshlutiCombobox.getSelectionModel().getSelectedItem().toString();
-        ArrayList<Tour> listOfTours = new ArrayList<>();
+        ArrayList<Tour> listOfTours;
         if(chosenLandshluti.equals("Allt landið")) {
-            //setTourList();
             listOfTours = tourController.getFilteredTours(searchString, chosenPrice, fraDate, tilDate, "", chosenLength);
         }
         else {
-            //ArrayList<Tour> listOfTours = tourController.getAllToursWithLocation(chosenLandshluti);
             listOfTours = tourController.getFilteredTours(searchString, chosenPrice, fraDate, tilDate, chosenLandshluti, chosenLength);
         }
         ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
@@ -158,7 +150,6 @@ public class IndexSiteController {
 
     public void verdSliderHandler(MouseEvent mouseEvent) {
         chosenPrice = (int)verdSlider.getValue();
-        System.out.println(chosenPrice);
         ArrayList<Tour> listOfTours = tourController.getFilteredTours(searchString, chosenPrice, fraDate, tilDate, chosenLandshluti, chosenLength);
         ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
         tourList.setItems(listViewTours);

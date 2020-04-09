@@ -82,7 +82,7 @@ public class DataBaseManager {
     //Skilar lista með öllum Tour í databaseinu
     public ArrayList<Tour> getAllTours(){
         try{
-            ArrayList<Tour> tourList = new ArrayList<Tour>();
+            ArrayList<Tour> tourList = new ArrayList<>();
             String sql = "SELECT * FROM tour";
             PreparedStatement stmt = db.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
@@ -113,7 +113,7 @@ public class DataBaseManager {
     //Skilar lista með öllum Tour sem eru eins og ákveðinn strengur
     public ArrayList<Tour> searchTourName(String name) {
         try{
-            ArrayList<Tour> tourList = new ArrayList<Tour>();
+            ArrayList<Tour> tourList = new ArrayList<>();
             String sql = "SELECT * FROM tour WHERE tourname LIKE ?";
             PreparedStatement stmt = db.prepareStatement(sql);
             stmt.setString(1, "%" + name + "%");
@@ -145,7 +145,7 @@ public class DataBaseManager {
     //skilar lista með öllum Tour sem eru með lengd undir len
     public ArrayList<Tour> getAllToursWithMaxLength(int len){
         try{
-            ArrayList<Tour> tourList = new ArrayList<Tour>();
+            ArrayList<Tour> tourList = new ArrayList<>();
             String sql = "SELECT * FROM tour WHERE length <= ?";
             PreparedStatement stmt = db.prepareStatement(sql);
             stmt.setInt(1, len);
@@ -177,7 +177,7 @@ public class DataBaseManager {
     //skilar lista með öllum Tour sem eru á ákveðnum landshluta
     public ArrayList<Tour> getAllToursWithLocation(String loc){
         try{
-            ArrayList<Tour> tourList = new ArrayList<Tour>();
+            ArrayList<Tour> tourList = new ArrayList<>();
             String sql = "SELECT * FROM tour WHERE location = ?";
             PreparedStatement stmt = db.prepareStatement(sql);
             stmt.setString(1, loc);
@@ -209,7 +209,7 @@ public class DataBaseManager {
     //skilar lista með öllum Tour sem eru á ákveðnu tímabili hvað varðar dagsetningu
     public ArrayList<Tour> getAllToursInsideTimePeriod(Date start, Date end){
         try{
-            ArrayList<Tour> tourList = new ArrayList<Tour>();
+            ArrayList<Tour> tourList = new ArrayList<>();
             String sql = "SELECT * FROM tour WHERE date >= ? AND date <= ?";
             PreparedStatement stmt = db.prepareStatement(sql);
             stmt.setDate(1, start);
@@ -242,7 +242,7 @@ public class DataBaseManager {
     //skilar lista með öllum Tour sem eru ódýrari en pri
     public ArrayList<Tour> getAllToursCheaper(int pri){
         try{
-            ArrayList<Tour> tourList = new ArrayList<Tour>();
+            ArrayList<Tour> tourList = new ArrayList<>();
             String sql = "SELECT * FROM tour WHERE price <= ?";
             PreparedStatement stmt = db.prepareStatement(sql);
             stmt.setInt(1, pri);
@@ -273,14 +273,14 @@ public class DataBaseManager {
 
     public ArrayList<Tour> getFilteredTours(String name, int pri, Date start, Date end, String loc, int len) {
         try {
-            ArrayList<Tour> tourList = new ArrayList<Tour>();
+            ArrayList<Tour> tourList = new ArrayList<>();
             String sql = "SELECT * FROM tour WHERE tourname LIKE ? AND price <= ? AND date >= ? AND date <= ? AND location LIKE ? AND length <= ?";
             PreparedStatement stmt = db.prepareStatement(sql);
             stmt.setString(1, "%" + name + "%");
             stmt.setInt(2, pri);
             stmt.setDate(3, start);
             stmt.setDate(4, end);
-            stmt.setString(5, loc);
+            stmt.setString(5, "%" + loc + "%");
             stmt.setInt(6, len);
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
@@ -373,7 +373,7 @@ public class DataBaseManager {
     //Tekur inn Tour id og skilar lista af öllum Review fyrir þann Tour
     public ArrayList<Review> getReviews(int tourId){
         try{
-            ArrayList<Review> reviewList = new ArrayList<Review>();
+            ArrayList<Review> reviewList = new ArrayList<>();
             String sql = "SELECT * FROM review WHERE tourid=?";
             PreparedStatement stmt = db.prepareStatement(sql);
             stmt.setInt(1, tourId);
