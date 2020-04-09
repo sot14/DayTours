@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
@@ -28,6 +29,8 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -73,6 +76,22 @@ public class IndexSiteController {
     Date fraDate = Date.valueOf("1980-01-01");
     Date tilDate = Date.valueOf("2050-01-01");
     int chosenPrice = 17000;
+
+
+    /*
+    public Image AlltLandiðImg = new Image(getClass().getResourceAsStream("AlltLandið.png"));
+
+     */
+    public Image AusturlandImg = new Image("Daytours/Img/Austurland.png");
+
+
+    /*
+    public Image HöfuðborgarsvæðiðImg = new Image(getClass().getResourceAsStream("src/Daytours/Img/Höfuðborgarsvæðið.png"));
+    private Image NorðurlandImg = new Image("src/Daytours/Img/Norðurland.png");
+    private Image SuðurlandImg = new Image("src/Daytours/Img/Suðurland.png");
+    private Image VestfirðirImg = new Image("src/Daytours/Img/Vestfirðir.png");
+    private Image VesturlandImg = new Image("src/Daytours/Img/Vesturland.png");
+     */
 
 
     public void init(DataBaseManager db) {
@@ -145,6 +164,35 @@ public class IndexSiteController {
         }
         ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
         tourList.setItems(listViewTours);
+
+        //myndabirting
+
+
+        switch(chosenLandshluti) {
+            case "Allt landið":
+               // landshlutiMynd = new ImageView(AlltLandiðImg);
+                break;
+            case "Austurland":
+                //landshlutiMynd.setImage(AusturlandImg);
+                System.out.println(landshlutiMynd.toString());
+                System.out.println(getClass().getResource("src/Daytours/Img/Austurland.png"));
+                break;
+            case "Höfuðborgarsvæðið":
+               // landshlutiMynd = new ImageView(HöfuðborgarsvæðiðImg);
+                break;
+            case "Norðurland":
+                break;
+            case "Suðurland":
+                break;
+            case "Vestfirðir":
+                break;
+            case "Vesturland":
+                break;
+        }
+
+
+
+
     }
 
     // atburðarhandler fyrir hvaða dagsetninga tímabil er valið
@@ -204,12 +252,5 @@ public class IndexSiteController {
 
         };
         afbokaFerdButton2.setOnAction(afbokaFerd);
-    }
-
-    public void afbokaFerd(ActionEvent actionEvent) {
-
-    }
-
-    public void landshlutiMyndHandler(MouseEvent mouseEvent) {
     }
 }
