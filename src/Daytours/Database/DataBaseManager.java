@@ -185,7 +185,7 @@ public class DataBaseManager {
     }
 
     //Tekur inn Booking hlut og setur hann í databaseið
-    public void addBooking(Booking booking){
+    public Booking addBooking(Booking booking){
         try {
             String sql = "INSERT INTO booking values (?,?,?,?,?,?,?,?)";
             PreparedStatement stmt = db.prepareStatement(sql);
@@ -201,8 +201,11 @@ public class DataBaseManager {
             stmt.setInt(8, booking.getTourID());
 
             stmt.executeUpdate();
+            booking.setBookingId(id);
+            return booking;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            return null;
         }
     }
 

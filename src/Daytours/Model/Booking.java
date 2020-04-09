@@ -1,15 +1,17 @@
 package Daytours.Model;
 
+import Daytours.Controller.TourController;
+
 public class Booking {
     private String phoneNo;
     private String cardNo;
-    private Tour tour;
     private boolean hotelPickup = false;
     private String participantName;
     private int participantNo;
     private int tourID;
     private String hotelAddress;
     private int bookingId;
+    private TourController tourController;
 
     public Booking( String phoneNo, String cardNo, int tourID, boolean hotelPickup, String participantName, int participantNo, String hotelAddress) {
         this.phoneNo = phoneNo;
@@ -36,14 +38,6 @@ public class Booking {
 
     public void setCardNo(String cardNo) {
         this.cardNo = cardNo;
-    }
-
-    public Tour getTour() {
-        return tour;
-    }
-
-    public void setTours(Tour tour) {
-        this.tour = tour;
     }
 
     public boolean isHotelPickup() {

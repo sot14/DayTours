@@ -1,12 +1,15 @@
 package Daytours.UI;
+import Daytours.Controller.BookingController;
 import Daytours.Controller.TourController;
 import Daytours.Database.DataBaseManager;
+import Daytours.Model.Booking;
 import Daytours.Model.Tour;
 import Daytours.UI.ReviewSiteController;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,10 +18,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.io.IOException;
@@ -41,6 +47,11 @@ public class IndexSiteController {
     @FXML
     public Slider verdSlider;
     @FXML
+    public Label lengthLabel;
+    @FXML
+    public Label priceLabel;
+    public Button afbokaFerdButton;
+    @FXML
     private ListView <Tour> tourList;
     @FXML
     private TextField leitaFerd;
@@ -48,6 +59,7 @@ public class IndexSiteController {
     private Button veljaFerdButton;
 
     private TourController tourController;
+    private BookingController bookingController;
     int tourID;
 
     private Tour tour;
@@ -61,6 +73,7 @@ public class IndexSiteController {
 
     public void init(DataBaseManager db) {
         tourController = new TourController(db);
+        bookingController = new BookingController(db);
         setTourList();
         landshlutiCombobox.getItems().removeAll(landshlutiCombobox.getItems());
         landshlutiCombobox.getItems().addAll("Allt landið", "Höfuðborgarsvæðið", "Vesturland", "Vestfirðir", "Norðurland", "Austurland", "Suðurland");
@@ -113,6 +126,7 @@ public class IndexSiteController {
         ArrayList<Tour> listOfTours = tourController.getFilteredTours(searchString, chosenPrice, fraDate, tilDate, chosenLandshluti, chosenLength);
         ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
         tourList.setItems(listViewTours);
+        lengthLabel.setText(Integer.toString(chosenLength));
     }
 
     // atburðahandler fyrir hvaða landshluti er valinn
@@ -157,7 +171,38 @@ public class IndexSiteController {
         ArrayList<Tour> listOfTours = tourController.getFilteredTours(searchString, chosenPrice, fraDate, tilDate, chosenLandshluti, chosenLength);
         ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
         tourList.setItems(listViewTours);
+        priceLabel.setText(Integer.toString(chosenPrice));
     }
 
 
+    public void afbokaFerdHandler(ActionEvent actionEvent) {
+        final Stage popup = new Stage();
+        popup.initModality(Modality.APPLICATION_MODAL);
+        //popup.initOwner(primaryStage);
+        VBox dialogVbox = new VBox(20);
+        TextField bokunarnumer = new TextField();
+        Button afbokaFerdButton2 = new Button("Afbóka ferð");
+
+
+        dialogVbox.getChildren().add(new Text("Sláðu inn bókunarnúmer"));
+        dialogVbox.getChildren().add(new Label("Bókunarnúmer:"));
+        dialogVbox.getChildren().add(bokunarnumer);
+        dialogVbox.getChildren().add(afbokaFerdButton2);
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        popup.setScene(dialogScene);
+        popup.show();
+
+        EventHandler<ActionEvent> afbokaFerd = event -> {
+            int bokunarnumerInput = Integer.parseInt(bokunarnumer.getText());
+            Booking booking = bookingController.getBooking(bokunarnumerInput);
+            int bookingTourID = booking.getTourID();
+            System.out.println("Bókuninni þinni á ferðinni: " + tourController.getTour(bookingTourID).getTourName() + " á nafninu " + booking.getParticipantName() + " hefur verið eytt");
+
+        };
+        afbokaFerdButton2.setOnAction(afbokaFerd);
+    }
+
+    public void afbokaFerd(ActionEvent actionEvent) {
+
+    }
 }

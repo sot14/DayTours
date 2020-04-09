@@ -83,18 +83,18 @@ public class BookingSiteController {
         //popup.initOwner(primaryStage);
         VBox dialogVbox = new VBox(20);
 
-        if (this.name.length() <= 0) popUpMessage = new Text("Vinsamlegast skrifið nafnið ykkar");
-        else if (numParticipantsBox.getSelectionModel().isEmpty()) popUpMessage = new Text("Vinsamlegast veljið fjölda ferðalanga");
+        if (this.name.length() <= 0) dialogVbox.getChildren().add(new Text("Vinsamlegast skrifið nafnið ykkar"));
+        else if (numParticipantsBox.getSelectionModel().isEmpty()) dialogVbox.getChildren().add(new Text("Vinsamlegast veljið fjölda ferðalanga"));
         else if (day.getSelectionModel().isEmpty() || month.getSelectionModel().isEmpty() || year.getSelectionModel().isEmpty() || this.cardNo.length() <= 0) {
-            popUpMessage = new Text("Vinsamlegast fyllið út kortaupplýsingar");
+            dialogVbox.getChildren().add(new Text("Vinsamlegast fyllið út kortaupplýsingar"));
         }
-        else if (this.phoneNo.length() <= 7) popUpMessage = new Text("Vinsamlegast sláið inn símanúmer");
+        else if (this.phoneNo.length() <= 7) dialogVbox.getChildren().add(new Text("Vinsamlegast sláið inn símanúmer"));
         else {
-            popUpMessage = new Text("Bókun móttekin, takk fyrir viðskiptin");
+            dialogVbox.getChildren().add(new Text("Bókun móttekin, takk fyrir viðskiptin"));
             bookingController.bookTour(booking);
+            dialogVbox.getChildren().add(new Text("Bókunarnúmerið þitt er: " + booking.getBookingId()));
         }
 
-        dialogVbox.getChildren().add(popUpMessage);
         Scene dialogScene = new Scene(dialogVbox, 200, 100);
         popup.setScene(dialogScene);
         popup.show();
