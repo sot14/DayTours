@@ -5,8 +5,6 @@ import Daytours.Model.Review;
 import Daytours.Model.Tour;
 
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 
 public class DataBaseManager {
@@ -142,135 +140,16 @@ public class DataBaseManager {
         }
     }
 
-    //skilar lista með öllum Tour sem eru með lengd undir len
-    public ArrayList<Tour> getAllToursWithMaxLength(int len){
-        try{
-            ArrayList<Tour> tourList = new ArrayList<>();
-            String sql = "SELECT * FROM tour WHERE length <= ?";
-            PreparedStatement stmt = db.prepareStatement(sql);
-            stmt.setInt(1, len);
-            ResultSet rs = stmt.executeQuery();
-
-            while(rs.next()){
-                String company = rs.getString("company");
-                double length = rs.getDouble("length");
-                Date date = rs.getDate("date");
-                String location = rs.getString("location");
-                String tourInfo = rs.getString("tourinfo");
-                double price = rs.getDouble("price");
-                int tourID = rs.getInt("id");
-                int participantNum = rs.getInt("participantnum");
-                String tourName = rs.getString("tourname");
-
-                Tour tour = new Tour(company, length, date, location, tourInfo, price, participantNum, tourName);
-                tour.setTourID(tourID);
-                tourList.add(tour);
-            }
-
-            return tourList;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
-
-    //skilar lista með öllum Tour sem eru á ákveðnum landshluta
-    public ArrayList<Tour> getAllToursWithLocation(String loc){
-        try{
-            ArrayList<Tour> tourList = new ArrayList<>();
-            String sql = "SELECT * FROM tour WHERE location = ?";
-            PreparedStatement stmt = db.prepareStatement(sql);
-            stmt.setString(1, loc);
-            ResultSet rs = stmt.executeQuery();
-
-            while(rs.next()){
-                String company = rs.getString("company");
-                double length = rs.getDouble("length");
-                Date date = rs.getDate("date");
-                String location = rs.getString("location");
-                String tourInfo = rs.getString("tourinfo");
-                double price = rs.getDouble("price");
-                int tourID = rs.getInt("id");
-                int participantNum = rs.getInt("participantnum");
-                String tourName = rs.getString("tourname");
-
-                Tour tour = new Tour(company, length, date, location, tourInfo, price, participantNum, tourName);
-                tour.setTourID(tourID);
-                tourList.add(tour);
-            }
-
-            return tourList;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
-
-    //skilar lista með öllum Tour sem eru á ákveðnu tímabili hvað varðar dagsetningu
-    public ArrayList<Tour> getAllToursInsideTimePeriod(Date start, Date end){
-        try{
-            ArrayList<Tour> tourList = new ArrayList<>();
-            String sql = "SELECT * FROM tour WHERE date >= ? AND date <= ?";
-            PreparedStatement stmt = db.prepareStatement(sql);
-            stmt.setDate(1, start);
-            stmt.setDate(2,end);
-            ResultSet rs = stmt.executeQuery();
-
-            while(rs.next()){
-                String company = rs.getString("company");
-                double length = rs.getDouble("length");
-                Date date = rs.getDate("date");
-                String location = rs.getString("location");
-                String tourInfo = rs.getString("tourinfo");
-                double price = rs.getDouble("price");
-                int tourID = rs.getInt("id");
-                int participantNum = rs.getInt("participantnum");
-                String tourName = rs.getString("tourname");
-
-                Tour tour = new Tour(company, length, date, location, tourInfo, price, participantNum, tourName);
-                tour.setTourID(tourID);
-                tourList.add(tour);
-            }
-
-            return tourList;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
-
-    //skilar lista með öllum Tour sem eru ódýrari en pri
-    public ArrayList<Tour> getAllToursCheaper(int pri){
-        try{
-            ArrayList<Tour> tourList = new ArrayList<>();
-            String sql = "SELECT * FROM tour WHERE price <= ?";
-            PreparedStatement stmt = db.prepareStatement(sql);
-            stmt.setInt(1, pri);
-            ResultSet rs = stmt.executeQuery();
-
-            while(rs.next()){
-                String company = rs.getString("company");
-                double length = rs.getDouble("length");
-                Date date = rs.getDate("date");
-                String location = rs.getString("location");
-                String tourInfo = rs.getString("tourinfo");
-                double price = rs.getDouble("price");
-                int tourID = rs.getInt("id");
-                int participantNum = rs.getInt("participantnum");
-                String tourName = rs.getString("tourname");
-
-                Tour tour = new Tour(company, length, date, location, tourInfo, price, participantNum, tourName);
-                tour.setTourID(tourID);
-                tourList.add(tour);
-            }
-
-            return tourList;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
-
+    /**
+     * Skilar lista af Tour sem uppfylla skilyrði filtera
+     * @param name
+     * @param pri
+     * @param start
+     * @param end
+     * @param loc
+     * @param len
+     * @return
+     */
     public ArrayList<Tour> getFilteredTours(String name, int pri, Date start, Date end, String loc, int len) {
         try {
             ArrayList<Tour> tourList = new ArrayList<>();

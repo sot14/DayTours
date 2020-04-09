@@ -28,19 +28,6 @@ public class TourController {
         return db.getFilteredTours(name, pri, start, end, loc, length);
     }
 
-    public ArrayList<Tour> getAllToursWithMaxLength(int len){
-        return db.getAllToursWithMaxLength(len);
-    }
-
-    public ArrayList<Tour> getAllToursWithLocation(String loc){
-        return db.getAllToursWithLocation(loc);
-    }
-
-    public ArrayList<Tour> getAllToursInsideTimePeriod(Date start, Date end){ return db.getAllToursInsideTimePeriod(start,end); }
-
-    public ArrayList<Tour> getAllToursCheaper(int price) { return db.getAllToursCheaper(price); }
-
-
     public ArrayList<Tour> searchTour(String tourName) {
         return db.searchTourName(tourName);
     }
