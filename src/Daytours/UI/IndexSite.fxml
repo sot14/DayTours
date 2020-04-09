@@ -19,8 +19,7 @@
             <InnerShadow />
          </effect></Label>
       <Button fx:id="veljaFerdButton" layoutX="417.0" layoutY="507.0" mnemonicParsing="false" onAction="#veljaFerdHandler" prefHeight="38.0" prefWidth="92.0" text="Velja ferð" />
-      <TextField fx:id="leitaFerd" layoutX="45.0" layoutY="92.0" prefHeight="28.0" prefWidth="136.0" />
-      <Button layoutX="190.0" layoutY="93.0" mnemonicParsing="false" onAction="#leitaFerdHandler" text="Leita" />
+      <TextField fx:id="leitaFerd" layoutX="45.0" layoutY="99.0" prefHeight="28.0" prefWidth="136.0" />
       <Slider fx:id="lengdSlider" blockIncrement="1.0" layoutX="596.0" layoutY="171.0" majorTickUnit="6.0" max="12.0" minorTickCount="5" onMouseReleased="#lengdSliderHandler" prefHeight="14.0" prefWidth="174.0" showTickLabels="true" showTickMarks="true" value="12.0" />
       <Label layoutX="596.0" layoutY="146.0" prefHeight="25.0" prefWidth="136.0" text="Veldu hámarkslengd:">
          <font>
@@ -54,5 +53,6 @@
             <Font size="11.0" />
          </font>
       </Label>
+      <Label layoutX="45.0" layoutY="81.0" text="Leita:" />
    </children>
 </AnchorPane>
