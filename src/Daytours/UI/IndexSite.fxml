@@ -6,22 +6,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="626.0" prefWidth="868.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Daytours.UI.IndexSiteController">
+<AnchorPane prefHeight="626.0" prefWidth="868.0" style="-fx-border-color: #00BFFF; -fx-border-width: 5; -fx-border-radius: 5;" stylesheets="@IndexSite.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Daytours.UI.IndexSiteController">
    <children>
       <ListView fx:id="tourList" layoutX="45.0" layoutY="166.0" prefHeight="342.0" prefWidth="463.0">
          <effect>
             <DropShadow />
          </effect></ListView>
-      <Label layoutX="262.0" layoutY="38.0" prefHeight="75.0" prefWidth="220.0" style="-fx-border-color: black; -fx-background-color: white;" text="Dagsferðir">
+      <Label contentDisplay="CENTER" layoutX="192.0" layoutY="13.0" prefHeight="38.0" prefWidth="336.0" text="Dagsferðir ehf" textAlignment="CENTER">
          <font>
-            <Font name="Snell Roundhand" size="52.0" />
-         </font>
-         <effect>
-            <InnerShadow />
-         </effect></Label>
-      <Button fx:id="veljaFerdButton" layoutX="416.0" layoutY="526.0" mnemonicParsing="false" onAction="#veljaFerdHandler" prefHeight="38.0" prefWidth="92.0" text="Velja ferð" />
-      <TextField fx:id="leitaFerd" layoutX="45.0" layoutY="99.0" prefHeight="28.0" prefWidth="136.0" />
-      <Slider fx:id="lengdSlider" blockIncrement="1.0" layoutX="596.0" layoutY="294.0" majorTickUnit="6.0" max="12.0" minorTickCount="5" onMouseReleased="#lengdSliderHandler" prefHeight="14.0" prefWidth="174.0" showTickLabels="true" showTickMarks="true" value="12.0" />
+            <Font name="Book Antiqua" size="46.0" />
+         </font></Label>
+      <Button fx:id="veljaFerdButton" layoutX="416.0" layoutY="526.0" mnemonicParsing="false" onAction="#veljaFerdHandler" prefHeight="38.0" prefWidth="92.0" styleClass="takki" text="Velja ferð" />
+      <TextField fx:id="leitaFerd" layoutX="45.0" layoutY="123.0" prefHeight="28.0" prefWidth="189.0" />
+      <Slider fx:id="lengdSlider" blockIncrement="1.0" layoutX="596.0" layoutY="294.0" majorTickUnit="6.0" max="12.0" minorTickCount="5" onMouseReleased="#lengdSliderHandler" prefHeight="14.0" prefWidth="174.0" showTickLabels="true" showTickMarks="true" style="-fx-color: #00BFFF;" value="12.0" />
       <Label layoutX="596.0" layoutY="262.0" prefHeight="25.0" prefWidth="136.0" text="Veldu hámarkslengd:">
          <font>
             <Font size="13.0" />
@@ -48,23 +45,28 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <Slider fx:id="verdSlider" blockIncrement="4000.0" layoutX="596.0" layoutY="364.0" majorTickUnit="4000.0" max="17000.0" min="1000.0" minorTickCount="1" onMouseReleased="#verdSliderHandler" prefHeight="38.0" prefWidth="174.0" showTickLabels="true" showTickMarks="true" value="17000.0" />
+      <Slider fx:id="verdSlider" blockIncrement="4000.0" layoutX="596.0" layoutY="364.0" majorTickUnit="4000.0" max="17000.0" min="1000.0" minorTickCount="1" onMouseReleased="#verdSliderHandler" prefHeight="38.0" prefWidth="174.0" showTickLabels="true" showTickMarks="true" style="-fx-color: #00BFFF;" value="17000.0" />
       <Label layoutX="785.0" layoutY="383.0" prefHeight="18.0" prefWidth="25.0" text="kr">
          <font>
             <Font size="11.0" />
          </font>
       </Label>
-      <Label layoutX="45.0" layoutY="81.0" text="Leita:" />
+      <Label layoutX="45.0" layoutY="99.0" text="Leita að ferð:" />
       <Label fx:id="lengthLabel" layoutX="736.0" layoutY="266.0" prefHeight="17.0" prefWidth="45.0" text="12" />
       <Label fx:id="priceLabel" layoutX="737.0" layoutY="338.0" text="17.000" />
-      <Button fx:id="afbokaFerdButton" layoutX="45.0" layoutY="526.0" mnemonicParsing="false" onAction="#afbokaFerdHandler" prefHeight="38.0" prefWidth="92.0" text="Afbóka ferð" />
-      <Label layoutX="582.0" layoutY="13.0" prefHeight="169.0" prefWidth="240.0">
+      <Button fx:id="afbokaFerdButton" layoutX="45.0" layoutY="526.0" mnemonicParsing="false" onAction="#afbokaFerdHandler" prefHeight="38.0" prefWidth="92.0" styleClass="takki" text="Afbóka ferð" />
+      <Label layoutX="582.0" layoutY="13.0" prefHeight="169.0" prefWidth="240.0" style="-fx-border-color: black;">
          <graphic>
             <ImageView fx:id="landshlutiMynd" fitHeight="169.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Img/AlltLandid.png" />
                </image></ImageView>
          </graphic>
+      </Label>
+      <Label layoutX="322.0" layoutY="58.0" prefHeight="25.0" prefWidth="206.0" text="...komdu með okkur í ævintýri!">
+         <font>
+            <Font size="15.0" />
+         </font>
       </Label>
    </children>
 </AnchorPane>
