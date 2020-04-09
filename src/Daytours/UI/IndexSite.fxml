@@ -54,8 +54,8 @@
          </font>
       </Label>
       <Label layoutX="45.0" layoutY="81.0" text="Leita:" />
-      <Label fx:id="lengthLabel" layoutX="718.0" layoutY="150.0" prefHeight="17.0" prefWidth="45.0" text="12" />
-      <Label fx:id="priceLabel" layoutX="715.0" layoutY="221.0" text="17.000" />
+      <Label fx:id="lengthLabel" layoutX="736.0" layoutY="150.0" prefHeight="17.0" prefWidth="45.0" text="12" />
+      <Label fx:id="priceLabel" layoutX="732.0" layoutY="221.0" text="17.000" />
       <Button fx:id="afbokaFerdButton" layoutX="45.0" layoutY="507.0" mnemonicParsing="false" onAction="#afbokaFerdHandler" prefHeight="38.0" prefWidth="92.0" text="Afbóka ferð" />
    </children>
 </AnchorPane>
