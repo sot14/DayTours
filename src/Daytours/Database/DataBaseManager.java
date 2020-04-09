@@ -383,7 +383,7 @@ public class DataBaseManager {
                 String name = rs.getString("name");
                 String reviewText = rs.getString("reviewtext");
 
-                reviewList.add(new Review(name, tourId, reviewText));
+                reviewList.add(new Review(tourId, reviewText, name));
             }
 
             return reviewList;

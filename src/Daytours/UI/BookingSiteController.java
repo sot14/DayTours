@@ -117,7 +117,7 @@ public class BookingSiteController {
         controller.init(tour, bookingController.getDb());
         Stage stage2 = new Stage();
         stage2.setTitle(tour.getTourName());
-        stage2.setScene(new Scene(root, 600, 400));
+        stage2.setScene(new Scene(root, 900, 750));
         stage2.show();
     }
 

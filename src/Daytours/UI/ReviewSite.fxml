@@ -4,10 +4,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Daytours.UI.ReviewSiteController">
+<AnchorPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Daytours.UI.ReviewSiteController">
    <children>
-      <Button fx:id="bokaFerdButton" layoutX="454.0" layoutY="329.0" mnemonicParsing="false" onAction="#bokaFerdHandler" prefHeight="31.0" prefWidth="103.0" text="Bóka ferð" />
-      <Label fx:id="tourNafn" layoutX="39.0" layoutY="30.0" prefHeight="59.0" prefWidth="215.0" text="Nafn a tour">
+      <Button fx:id="bokaFerdButton" layoutX="454.0" layoutY="337.0" mnemonicParsing="false" onAction="#bokaFerdHandler" prefHeight="31.0" prefWidth="103.0" text="Bóka ferð" />
+      <Label fx:id="tourNafn" layoutX="39.0" layoutY="30.0" prefHeight="59.0" prefWidth="275.0" text="Nafn a tour">
          <font>
             <Font size="18.0" />
          </font>
@@ -24,14 +24,19 @@
       <Label layoutX="39.0" layoutY="105.0" text="Dagsetning" />
       <Label layoutX="135.0" layoutY="105.0" text="Lengd" />
       <Label layoutX="207.0" layoutY="105.0" text="Staðsetning" />
-      <Label fx:id="date" layoutX="39.0" layoutY="125.0" prefHeight="17.0" prefWidth="76.0" text="date" />
+      <Label fx:id="date" layoutX="39.0" layoutY="125.0" prefHeight="17.0" prefWidth="91.0" text="date" />
       <Label fx:id="length" layoutX="135.0" layoutY="125.0" text="xxx klst" />
       <Label fx:id="loc" layoutX="207.0" layoutY="125.0" text="Location" />
       <Label layoutX="39.0" layoutY="160.0" text="Um ferðina" />
       <Label fx:id="price" layoutX="39.0" layoutY="300.0" text="xxx kr" />
-      <Label layoutX="125.0" layoutY="300.0" text="Fjöldi:" />
-      <Label fx:id="participants" layoutX="169.0" layoutY="300.0" text="xx" />
-      <TextArea fx:id="info" layoutX="39.0" layoutY="180.0" prefHeight="103.0" prefWidth="245.0" />
-      <TextArea fx:id="reviews" layoutX="368.0" layoutY="80.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label layoutX="125.0" layoutY="300.0" text="Hámarksfjöldi" />
+      <Label fx:id="participants" layoutX="207.0" layoutY="300.0" text="xx" />
+      <TextArea fx:id="info" editable="false" layoutX="39.0" layoutY="180.0" prefHeight="103.0" prefWidth="245.0" />
+      <TableView fx:id="reviews" layoutX="368.0" layoutY="89.0" prefHeight="239.0" prefWidth="479.0">
+        <columns>
+          <TableColumn fx:id="name" prefWidth="105.0" text="Nafn" />
+          <TableColumn fx:id="reviewText" prefWidth="373.0" text="Review" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
