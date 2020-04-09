@@ -10,7 +10,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -23,11 +22,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.IOException;
-import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 public class ReviewSiteController {
 
@@ -35,6 +30,8 @@ public class ReviewSiteController {
     public TextArea wReview;
     @FXML
     public TextField wName;
+    @FXML
+    public ImageView mynd;
     @FXML
     private Button bokaFerdButton,tilBakaButton;
     @FXML
@@ -47,6 +44,7 @@ public class ReviewSiteController {
     private TableColumn<Review,String> name;
     @FXML
     private TableColumn<Review,String> reviewText;
+
     public String nafn;
     public String reviewTexti;
     public Review review;
@@ -76,8 +74,6 @@ public class ReviewSiteController {
         tourNafn.setText(tour.getTourName());
         company.setText(tour.getCompany());
 
-
-
         String strDate = (tour.getDate()).toString();
         date.setText(strDate);
 
@@ -95,6 +91,11 @@ public class ReviewSiteController {
         String fjoldi = String.valueOf(tour.getParticipantNum());
         participants.setText(fjoldi);
 
+
+    }
+
+    public void synaMynd() {
+
     }
 
     public void synaReview() {
@@ -104,6 +105,7 @@ public class ReviewSiteController {
         reviews.setItems(listViewReviews);
         name.setCellValueFactory(
                 new PropertyValueFactory<Review,String>("name"));
+        name.setCellFactory(WRAPPING_CELL_FACTORY);
         reviewText.setCellValueFactory(
                 new PropertyValueFactory<Review,String>("reviewText"));
         reviewText.setCellFactory(WRAPPING_CELL_FACTORY);
@@ -210,4 +212,6 @@ public class ReviewSiteController {
         popup.setScene(dialogScene);
         popup.show();
     }
+
+
 }
