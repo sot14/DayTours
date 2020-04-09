@@ -102,7 +102,7 @@ public class ReviewSiteController {
         date.setText(strDate);
 
         String lengd = String.valueOf(tour.getLength());
-        length.setText(lengd + " klst.");
+        length.setText(lengd + " klst");
 
         loc.setText(tour.getLocation());
 
@@ -228,7 +228,7 @@ public class ReviewSiteController {
         VBox dialogVbox = new VBox(20);
 
         if (tour.getParticipantNum() == 0) {
-            popUpMessage = new Text("Ferðin er uppbókuð");
+            popUpMessage = new Text("  Ferðin er uppbókuð");
             bokaFerdButton.setDisable(true);
         }
         else {
