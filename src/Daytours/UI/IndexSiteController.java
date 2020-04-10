@@ -125,7 +125,7 @@ public class IndexSiteController {
         stage.close();
 
         //opna næsta glugga þ.e. tour&review glugga
-        System.out.println(IndexSiteController.class.getResource("/Daytours/UI/ReviewSite.fxml"));
+        //System.out.println(IndexSiteController.class.getResource("/Daytours/UI/ReviewSite.fxml"));
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/ReviewSite.fxml"));
         Parent root = fxmlLoader.load();
