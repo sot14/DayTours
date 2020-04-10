@@ -153,7 +153,7 @@ public class DataBaseManager {
     public ArrayList<Tour> getFilteredTours(String name, int pri, Date start, Date end, String loc, int len) {
         try {
             ArrayList<Tour> tourList = new ArrayList<>();
-            String sql = "SELECT * FROM tour WHERE tourname LIKE ? AND price <= ? AND date >= ? AND date <= ? AND location LIKE ? AND length <= ?";
+            String sql = "SELECT * FROM tour WHERE LOWER (tourname) LIKE LOWER(?) AND price <= ? AND date >= ? AND date <= ? AND location LIKE ? AND length <= ?";
             PreparedStatement stmt = db.prepareStatement(sql);
             stmt.setString(1, "%" + name + "%");
             stmt.setInt(2, pri);
