@@ -109,6 +109,7 @@ public class IndexSiteController {
             ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
             tourList.setItems(listViewTours);
         });
+        veljaFerdButton.setDisable(true);
     }
 
     public void setTourList(){
@@ -125,22 +126,23 @@ public class IndexSiteController {
     // atburðar handler fyrir velja ferð takkann á forsíðu
     public void veljaFerdHandler(ActionEvent actionEvent) throws IOException {
         //Nær í þann Tour sem er valinn
-        tour = tourList.getSelectionModel().getSelectedItem();
-        Stage stage = (Stage) veljaFerdButton.getScene().getWindow();
-        //loka núverandi glugga þ.e. tours glugga
-        stage.close();
+            tour = tourList.getSelectionModel().getSelectedItem();
+            Stage stage = (Stage) veljaFerdButton.getScene().getWindow();
+            //loka núverandi glugga þ.e. tours glugga
+            stage.close();
 
-        //opna næsta glugga þ.e. tour&review glugga
-        //System.out.println(IndexSiteController.class.getResource("/Daytours/UI/ReviewSite.fxml"));
+            //opna næsta glugga þ.e. tour&review glugga
+            //System.out.println(IndexSiteController.class.getResource("/Daytours/UI/ReviewSite.fxml"));
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/ReviewSite.fxml"));
-        Parent root = fxmlLoader.load();
-        ReviewSiteController reviewsitecontroller = fxmlLoader.getController();
-        reviewsitecontroller.init(tour, tourController.getDb());
-        Stage stage2 = new Stage();
-        stage2.setTitle(tour.getTourName());
-        stage2.setScene(new Scene(root, 900, 750));
-        stage2.show();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/ReviewSite.fxml"));
+            Parent root = fxmlLoader.load();
+            ReviewSiteController reviewsitecontroller = fxmlLoader.getController();
+            reviewsitecontroller.init(tour, tourController.getDb());
+            Stage stage2 = new Stage();
+            stage2.setTitle(tour.getTourName());
+            stage2.setScene(new Scene(root, 900, 750));
+            stage2.show();
+
     }
 
     // atburðarhandler á sleðanum sem notaður er til að velja hámarkslengd ferða
@@ -251,5 +253,10 @@ public class IndexSiteController {
 
         };
         afbokaFerdButton2.setOnAction(afbokaFerd);
+    }
+
+    public void ytaAFerdHandler(MouseEvent mouseEvent) {
+        //Takkinn að velja ferð virkjast þegar við ýtum á ferð í listView
+        veljaFerdButton.setDisable(false);
     }
 }
