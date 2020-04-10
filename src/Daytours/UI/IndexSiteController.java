@@ -99,7 +99,13 @@ public class IndexSiteController {
 
         leitaFerd.textProperty().addListener((observable, oldValue, newValue) -> {
             searchString=leitaFerd.getText();
-            ArrayList<Tour> listOfTours = tourController.getFilteredTours(searchString, chosenPrice, fraDate, tilDate, chosenLandshluti, chosenLength);
+            ArrayList<Tour> listOfTours;
+            if(chosenLandshluti.equals("Allt landið")) {
+                listOfTours = tourController.getFilteredTours(searchString, chosenPrice, fraDate, tilDate, "", chosenLength);
+            }
+            else {
+                listOfTours = tourController.getFilteredTours(searchString, chosenPrice, fraDate, tilDate, chosenLandshluti, chosenLength);
+            }
             ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
             tourList.setItems(listViewTours);
         });
@@ -186,10 +192,6 @@ public class IndexSiteController {
                 landshlutiMynd.setImage(VesturlandImg);
                 break;
         }
-
-
-
-
     }
 
     // atburðarhandler fyrir hvaða dagsetninga tímabil er valið
