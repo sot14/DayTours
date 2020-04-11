@@ -15,7 +15,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import Daytours.Database.DataBaseManager;
-import Daytours.Model.Tour;
 import Daytours.Model.Booking;
 
 import java.io.IOException;
@@ -39,12 +38,14 @@ public class BookingSiteController {
     public ChoiceBox<Integer> month;
     public ChoiceBox<Integer> year;
     public Label tourNameField;
-    public ChoiceBox<Integer> numParticipantsBox;
+    public ComboBox<Integer> numParticipantsBox;
     public Text popUpMessage;
     public Booking booking;
+    public Label tilBorgunar;
 
     private BookingController bookingController;
     private Tour tour;
+    int numParticipants;
 
     public void init(Tour tour, DataBaseManager db) {
         this.bookingController = new BookingController(db);
@@ -64,13 +65,14 @@ public class BookingSiteController {
         day.setItems(dayList);
         month.setItems(monthList);
         year.setItems(yearList);
+        tilBorgunar.setText("");
     }
     public void bookTour(ActionEvent actionEvent) {
         phoneNo = phoneNoField.getText();
         cardNo = cardNumber.getText();
         int tourID = tour.getTourID();
         this.name = nameField.getText();
-        int numParticipants = numParticipantsBox.getSelectionModel().getSelectedIndex();
+        numParticipants = numParticipantsBox.getSelectionModel().getSelectedIndex() + 1;
         hotelAddress = addressField.getText();
         booking = new Booking(phoneNo, cardNo, tourID, hotelPickup, name, numParticipants, hotelAddress);
 
@@ -121,4 +123,9 @@ public class BookingSiteController {
         stage2.show();
     }
 
+    public void uppfaeraVerd(ActionEvent dragEvent) {
+        numParticipants = numParticipantsBox.getSelectionModel().getSelectedIndex() + 1;
+        String verd = Integer.toString((int) (numParticipants * tour.getPrice()));
+        tilBorgunar.setText(verd + " kr.");
+    }
 }

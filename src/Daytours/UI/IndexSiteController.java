@@ -246,7 +246,7 @@ public class IndexSiteController {
             Booking booking = bookingController.getBooking(bokunarnumerInput);
             int bookingTourID = booking.getTourID();
             System.out.println("Bókuninni þinni á ferðinni: " + tourController.getTour(bookingTourID).getTourName() + " á nafninu " + booking.getParticipantName() + " hefur verið eytt");
-
+            Tour afbokadTour = tourController.getTour(bookingTourID);
         };
         afbokaFerdButton2.setOnAction(afbokaFerd);
     }

@@ -144,6 +144,7 @@ public class ReviewSiteController {
 
         if (tour.getParticipantNum() == 0) {
             popUpMessage = new Text("Ferðin er uppbókuð");
+            dialogVbox.getChildren().add(popUpMessage);
             bokaFerdButton.setDisable(true);
         }
         else {
@@ -162,7 +163,7 @@ public class ReviewSiteController {
             stage2.setScene(new Scene(root, 700, 450));
             stage2.show();
         }
-        dialogVbox.getChildren().add(popUpMessage);
+
         Scene dialogScene = new Scene(dialogVbox, 200, 100);
         popup.setScene(dialogScene);
         popup.show();
