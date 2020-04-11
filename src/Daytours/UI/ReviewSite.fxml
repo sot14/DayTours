@@ -5,10 +5,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="641.0" prefWidth="919.0" style="-fx-border-color: #00BFFF;; -fx-border-width: 5; -fx-border-radius: 3;" stylesheets="@IndexSite.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Daytours.UI.ReviewSiteController">
+<AnchorPane prefHeight="718.0" prefWidth="919.0" style="-fx-border-color: #00BFFF;; -fx-border-width: 5; -fx-border-radius: 3;" stylesheets="@IndexSite.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Daytours.UI.ReviewSiteController">
    <children>
-      <Button fx:id="bokaFerdButton" layoutX="750.0" layoutY="580.0" mnemonicParsing="false" onAction="#bokaFerdHandler" prefHeight="31.0" prefWidth="103.0" styleClass="takki" text="Bóka ferð" />
-      <Label fx:id="tourNafn" layoutX="39.0" layoutY="30.0" prefHeight="59.0" prefWidth="275.0" text="Nafn a tour">
+      <Button fx:id="bokaFerdButton" layoutX="740.0" layoutY="700.0" mnemonicParsing="false" onAction="#bokaFerdHandler" prefHeight="31.0" prefWidth="103.0" styleClass="takki" text="Bóka ferð" />
+      <Label fx:id="tourNafn" layoutX="39.0" layoutY="30.0" prefHeight="59.0" prefWidth="315.0" text="Nafn a tour">
          <font>
             <Font size="18.0" />
          </font>
@@ -17,38 +17,38 @@
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Button fx:id="tilBakaButton" layoutX="40.0" layoutY="580.0" mnemonicParsing="false" onAction="#tilBakaHandler" prefHeight="31.0" prefWidth="91.0" styleClass="takki" text="Til baka" />
+      <Button fx:id="tilBakaButton" layoutX="40.0" layoutY="700.0" mnemonicParsing="false" onAction="#tilBakaHandler" prefHeight="31.0" prefWidth="91.0" styleClass="takki" text="Til baka" />
       <Label fx:id="company" layoutX="39.0" layoutY="70.0" prefHeight="17.0" prefWidth="143.0" text="company">
          <font>
             <Font name="System Italic" size="13.0" />
          </font></Label>
-      <Label layoutX="39.0" layoutY="270.0" text="Dagsetning" />
-      <Label layoutX="135.0" layoutY="270.0" text="Lengd" />
-      <Label layoutX="215.0" layoutY="270.0" text="Staðsetning" />
-      <Label fx:id="date" layoutX="39.0" layoutY="290.0" prefHeight="17.0" prefWidth="91.0" text="date" />
-      <Label fx:id="length" layoutX="135.0" layoutY="290.0" text="xxx klst" />
-      <Label fx:id="loc" layoutX="215.0" layoutY="290.0" text="Location" />
-      <Label layoutX="39.0" layoutY="320.0" text="Um ferðina" />
-      <Label fx:id="price" layoutX="39.0" layoutY="520.0" text="xxx kr" />
-      <Label layoutX="145.0" layoutY="520.0" text="Pláss eftir:" />
-      <Label fx:id="participants" layoutX="215.0" layoutY="520.0" text="xx" />
-      <TextArea fx:id="info" editable="false" layoutX="39.0" layoutY="350.0" prefHeight="150.0" prefWidth="245.0" />
+      <Label layoutX="39.0" layoutY="360.0" text="Dagsetning" />
+      <Label layoutX="155.0" layoutY="360.0" text="Lengd" />
+      <Label layoutX="250.0" layoutY="360.0" text="Staðsetning" />
+      <Label fx:id="date" layoutX="39.0" layoutY="380.0" prefHeight="17.0" prefWidth="91.0" text="date" />
+      <Label fx:id="length" layoutX="155.0" layoutY="380.0" text="xxx klst" />
+      <Label fx:id="loc" layoutX="250.0" layoutY="380.0" text="Location" />
+      <Label layoutX="39.0" layoutY="420.0" text="Um ferðina" />
+      <Label fx:id="price" layoutX="39.0" layoutY="630.0" text="xxx kr" />
+      <Label layoutX="145.0" layoutY="630.0" text="Pláss eftir:" />
+      <Label fx:id="participants" layoutX="215.0" layoutY="630.0" text="xx" />
+      <TextArea fx:id="info" editable="false" layoutX="39.0" layoutY="450.0" prefHeight="150.0" prefWidth="275.0" />
       <TableView fx:id="reviews" layoutX="368.0" layoutY="89.0" prefHeight="239.0" prefWidth="479.0">
         <columns>
           <TableColumn fx:id="name" prefWidth="153.0" text="Nafn" />
           <TableColumn fx:id="reviewText" prefWidth="325.0" text="Review" />
         </columns>
       </TableView>
-      <Label layoutX="368.0" layoutY="385.0" text="Skrifa Ummæli">
+      <Label layoutX="540.0" layoutY="385.0" text="Skrifa Ummæli">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="368.0" layoutY="432.0" text="Nafn:" />
-      <TextField fx:id="wName" layoutX="425.0" layoutY="427.0" prefHeight="27.0" prefWidth="186.0" />
-      <Label layoutX="368.0" layoutY="484.0" prefHeight="17.0" prefWidth="57.0" text="Ummæli:" />
-      <TextArea fx:id="wReview" layoutX="425.0" layoutY="477.0" prefHeight="103.0" prefWidth="186.0" />
-      <Button layoutX="625.0" layoutY="553.0" mnemonicParsing="false" onAction="#sendaHandler" styleClass="takki" text="Senda" />
-      <ImageView fx:id="mynd" fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="450.0" layoutY="432.0" text="Nafn:" />
+      <TextField fx:id="wName" layoutX="510.0" layoutY="427.0" prefHeight="27.0" prefWidth="186.0" />
+      <Label layoutX="450.0" layoutY="484.0" prefHeight="17.0" prefWidth="57.0" text="Ummæli:" />
+      <TextArea fx:id="wReview" layoutX="510.0" layoutY="477.0" prefHeight="103.0" prefWidth="186.0" />
+      <Button layoutX="710.0" layoutY="553.0" mnemonicParsing="false" onAction="#sendaHandler" styleClass="takki" text="Senda" />
+      <ImageView fx:id="mynd" fitHeight="239.0" fitWidth="282.0" layoutX="35.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

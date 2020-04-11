@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -56,6 +57,28 @@ public class ReviewSiteController {
     private ReviewController reviewController;
     private TourController tourController;
 
+    public Image tourId1 = new Image("Daytours/Img/goldenCircle.jpg");
+    public Image tourId2 = new Image("Daytours/Img/geitalabb.png");
+    public Image tourId3 = new Image("Daytours/Img/thingvellir.png");
+    public Image tourId4 = new Image("Daytours/Img/heidmork.png");
+    public Image tourId5 = new Image("Daytours/Img/steingrimsfjordur.png");
+    public Image tourId6 = new Image("Daytours/Img/vestmannaeyjar.png");
+    public Image tourId7 = new Image("Daytours/Img/vidgelmir.png");
+    public Image tourId8 = new Image("Daytours/Img/kayak.png");
+    public Image tourId9 = new Image("Daytours/Img/zipline.png");
+    public Image tourId10 = new Image("Daytours/Img/selir.png");
+    public Image tourId11 = new Image("Daytours/Img/hestar.png");
+    public Image tourId12 = new Image("Daytours/Img/hengifoss.png");
+    public Image tourId13 = new Image("Daytours/Img/giljabod.png");
+    public Image tourId14 = new Image("Daytours/Img/hvalaskodun.png");
+    public Image tourId15 = new Image("Daytours/Img/jeppaferd.png");
+    public Image tourId16 = new Image("Daytours/Img/egilsstadir.png");
+    public Image tourId17 = new Image("Daytours/Img/vigur.png");
+    public Image tourId18 = new Image("Daytours/Img/hornstrandir.png");
+    public Image tourId19 = new Image("Daytours/Img/videy.png");
+    public Image tourId20 = new Image("Daytours/Img/raudholar.png");
+
+
 
 
     public void init(Tour tour, DataBaseManager db){
@@ -64,7 +87,8 @@ public class ReviewSiteController {
         tourController = new TourController(db);
         synaTour();
         synaReview();
-        reviews.setFixedCellSize(60.0);
+        synaMynd();
+        reviews.setFixedCellSize(80.0);
         wReview.setWrapText(true);
         wReview.setWrapText(true);
 
@@ -78,7 +102,7 @@ public class ReviewSiteController {
         date.setText(strDate);
 
         String lengd = String.valueOf(tour.getLength());
-        length.setText(lengd + " klst.");
+        length.setText(lengd + " klst");
 
         loc.setText(tour.getLocation());
 
@@ -95,7 +119,68 @@ public class ReviewSiteController {
     }
 
     public void synaMynd() {
-
+        switch(tourId) {
+            case 1:
+                mynd.setImage(tourId1);
+                break;
+            case 2:
+                mynd.setImage(tourId2);
+                break;
+            case 3:
+                mynd.setImage(tourId3);
+                break;
+            case 4:
+                mynd.setImage(tourId4);
+                break;
+            case 5:
+                mynd.setImage(tourId5);
+                break;
+            case 6:
+                mynd.setImage(tourId6);
+                break;
+            case 7:
+                mynd.setImage(tourId7);
+                break;
+            case 8:
+                mynd.setImage(tourId8);
+                break;
+            case 9:
+                mynd.setImage(tourId9);
+                break;
+            case 10:
+                mynd.setImage(tourId10);
+                break;
+            case 11:
+                mynd.setImage(tourId11);
+                break;
+            case 12:
+                mynd.setImage(tourId12);
+                break;
+            case 13:
+                mynd.setImage(tourId13);
+                break;
+            case 14:
+                mynd.setImage(tourId14);
+                break;
+            case 15:
+                mynd.setImage(tourId15);
+                break;
+            case 16:
+                mynd.setImage(tourId16);
+                break;
+            case 17:
+                mynd.setImage(tourId17);
+                break;
+            case 18:
+                mynd.setImage(tourId18);
+                break;
+            case 19:
+                mynd.setImage(tourId19);
+                break;
+            case 20:
+                mynd.setImage(tourId20);
+                break;
+        }
     }
 
     public void synaReview() {
@@ -143,8 +228,7 @@ public class ReviewSiteController {
         VBox dialogVbox = new VBox(20);
 
         if (tour.getParticipantNum() == 0) {
-            popUpMessage = new Text("Ferðin er uppbókuð");
-            dialogVbox.getChildren().add(popUpMessage);
+            popUpMessage = new Text("  Ferðin er uppbókuð");
             bokaFerdButton.setDisable(true);
         }
         else {
@@ -153,7 +237,7 @@ public class ReviewSiteController {
             stage.close();
 
             //opna næsta glugga þ.e. booking glugga
-            System.out.println(IndexSiteController.class.getResource("/Daytours/UI/BookingSite.fxml"));
+            //System.out.println(IndexSiteController.class.getResource("/Daytours/UI/BookingSite.fxml"));
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/BookingSite.fxml"));
             Parent root = fxmlLoader.load();
             BookingSiteController controller = fxmlLoader.getController();
@@ -163,7 +247,7 @@ public class ReviewSiteController {
             stage2.setScene(new Scene(root, 700, 450));
             stage2.show();
         }
-
+        dialogVbox.getChildren().add(popUpMessage);
         Scene dialogScene = new Scene(dialogVbox, 200, 100);
         popup.setScene(dialogScene);
         popup.show();
@@ -175,7 +259,7 @@ public class ReviewSiteController {
         stage.close();
 
         //opna fyrrverandi glugga þ.e. index glugga
-        System.out.println(IndexSiteController.class.getResource("/Daytours/UI/IndexSite.fxml"));
+       // System.out.println(IndexSiteController.class.getResource("/Daytours/UI/IndexSite.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/IndexSite.fxml"));
         Parent root = fxmlLoader.load();
         IndexSiteController controller = fxmlLoader.getController();
@@ -202,10 +286,11 @@ public class ReviewSiteController {
         if (this.nafn.length() <= 0) popUpMessage = new Text("Vinsamlegast skrifið nafnið ykkar");
         else if (this.reviewTexti.length() <= 0) popUpMessage = new Text("Vinsamlegast skrifið inn ummæli");
         else {
-            popUpMessage = new Text("Ummæli móttekin, takk fyrir");
+            popUpMessage = new Text(" Ummæli móttekin, takk fyrir");
             reviewController.addReview(review);
             wName.clear();
             wReview.clear();
+            synaReview();
         }
 
         dialogVbox.getChildren().add(popUpMessage);
