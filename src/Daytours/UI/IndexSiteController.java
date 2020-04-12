@@ -13,6 +13,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -77,8 +78,6 @@ public class IndexSiteController {
     Date tilDate = Date.valueOf("2050-01-01");
     int chosenPrice = 17000;
 
-
-
     public Image AlltLandiðImg = new Image("Daytours/Img/AlltLandid.png");
     public Image AusturlandImg = new Image("Daytours/Img/Austurland.png");
     public Image HöfuðborgarsvæðiðImg = new Image("Daytours/Img/Hofudborgarsvaedid.png");
@@ -86,7 +85,6 @@ public class IndexSiteController {
     public Image SuðurlandImg = new Image("Daytours/Img/Sudurland.png");
     public Image VestfirðirImg = new Image("Daytours/Img/Vestfirdir.png");
     public Image VesturlandImg = new Image("Daytours/Img/Vesturland.png");
-
 
 
     public void init(DataBaseManager db) {
@@ -231,16 +229,16 @@ public class IndexSiteController {
     public void afbokaFerdHandler(ActionEvent actionEvent) {
         final Stage popup = new Stage();
         popup.initModality(Modality.APPLICATION_MODAL);
-        //popup.initOwner(primaryStage);
         VBox dialogVbox = new VBox(20);
         TextField bokunarnumer = new TextField();
         Button afbokaFerdButton2 = new Button("Afbóka ferð");
 
-
-        dialogVbox.getChildren().add(new Text("Sláðu inn bókunarnúmer"));
-        dialogVbox.getChildren().add(new Label("Bókunarnúmer:"));
+        dialogVbox.getChildren().add(new Text("Sláðu inn bókunarnúmer:"));
         dialogVbox.getChildren().add(bokunarnumer);
         dialogVbox.getChildren().add(afbokaFerdButton2);
+        dialogVbox.setMargin(dialogVbox.getChildren().get(0), new Insets(40, 0, 0, 75));
+        dialogVbox.setMargin(bokunarnumer, new Insets(0, 30, 5, 30));
+        dialogVbox.setMargin(afbokaFerdButton2, new Insets(10, 0, 5, 105));
         Scene dialogScene = new Scene(dialogVbox, 300, 200);
         popup.setScene(dialogScene);
         popup.show();
@@ -248,9 +246,15 @@ public class IndexSiteController {
         EventHandler<ActionEvent> afbokaFerd = event -> {
             int bokunarnumerInput = Integer.parseInt(bokunarnumer.getText());
             Booking booking = bookingController.getBooking(bokunarnumerInput);
-            int bookingTourID = booking.getTourID();
-            System.out.println("Bókuninni þinni á ferðinni: " + tourController.getTour(bookingTourID).getTourName() + " á nafninu " + booking.getParticipantName() + " hefur verið eytt");
-            Tour afbokadTour = tourController.getTour(bookingTourID);
+
+            if(booking != null) {
+                int bookingTourID = booking.getTourID();
+                Tour afbokadTour = tourController.getTour(bookingTourID);
+                tourController.changeTourSeatsLeft(afbokadTour.getTourID(), booking.getParticipantNo(), afbokadTour.getParticipantNum());
+                System.out.println("Bókuninni þinni á ferðinni: " + tourController.getTour(bookingTourID).getTourName() + " á nafninu " + booking.getParticipantName() + " hefur verið eytt");
+            }
+            else System.out.println("Bókun ekki til");
+
         };
         afbokaFerdButton2.setOnAction(afbokaFerd);
     }

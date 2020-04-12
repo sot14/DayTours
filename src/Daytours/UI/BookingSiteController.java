@@ -1,5 +1,6 @@
 package Daytours.UI;
 
+import Daytours.Controller.TourController;
 import Daytours.Model.Tour;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -44,11 +45,13 @@ public class BookingSiteController {
     public Label tilBorgunar;
 
     private BookingController bookingController;
+    private TourController tourController;
     private Tour tour;
     int numParticipants;
 
     public void init(Tour tour, DataBaseManager db) {
         this.bookingController = new BookingController(db);
+        this.tourController = new TourController(db);
         this.tour = tour;
         ObservableList<Integer> noParticipantsList = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8);
         ObservableList<Integer> dayList = FXCollections.observableArrayList();
@@ -66,6 +69,7 @@ public class BookingSiteController {
         month.setItems(monthList);
         year.setItems(yearList);
         tilBorgunar.setText("");
+        addressField.setDisable(true);
     }
     public void bookTour(ActionEvent actionEvent) {
         phoneNo = phoneNoField.getText();
@@ -95,6 +99,7 @@ public class BookingSiteController {
             dialogVbox.getChildren().add(new Text("Bókun móttekin, takk fyrir viðskiptin"));
             bookingController.bookTour(booking);
             dialogVbox.getChildren().add(new Text("Bókunarnúmerið þitt er: " + booking.getBookingId()));
+            tourController.changeTourSeatsLeft(tour.getTourID(), numParticipants, tour.getParticipantNum());
         }
 
         Scene dialogScene = new Scene(dialogVbox, 200, 100);
@@ -104,6 +109,7 @@ public class BookingSiteController {
 
     public void hotelPickupHandler(ActionEvent actionEvent) {
         hotelPickup = !hotelPickup;
+        addressField.setDisable(!addressField.isDisabled());
     }
 
     public void tilBakaHandler(ActionEvent actionEvent) throws IOException {

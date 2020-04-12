@@ -77,6 +77,19 @@ public class DataBaseManager {
         }
     }
 
+    public void changeTourSeatsLeft(int id, int seatsBooked, int numSeats) {
+        try {
+            String sql = "UPDATE tour SET participantsnum=? WHERE id=?";
+            PreparedStatement stmt = db.prepareStatement(sql);
+            stmt.setInt(1, numSeats - seatsBooked);
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
     //Skilar lista með öllum Tour í databaseinu
     public ArrayList<Tour> getAllTours(){
         try{
@@ -233,6 +246,18 @@ public class DataBaseManager {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return null;
+        }
+    }
+
+    public void removeBooking(int id) {
+        try {
+            String sql = "DELETE FROM booking WHERE id=?";
+            PreparedStatement stmt = db.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
     }
 

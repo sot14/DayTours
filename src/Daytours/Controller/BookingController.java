@@ -19,6 +19,10 @@ public class BookingController {
         tour.setParticipantNum(--no);
     }
 
+    public void removeBooking(int id) {
+        db.removeBooking(id);
+    }
+
     public DataBaseManager getDb(){
         return db;
     }
