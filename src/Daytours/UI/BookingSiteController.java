@@ -52,7 +52,7 @@ public class BookingSiteController {
         this.bookingController = new BookingController(db);
         this.tourController = new TourController(db);
         this.tour = tour;
-        ObservableList<Integer> noParticipantsList = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8);
+        ObservableList<Integer> noParticipantsList = FXCollections.observableArrayList();
         ObservableList<Integer> dayList = FXCollections.observableArrayList();
         ObservableList<Integer> monthList = FXCollections.observableArrayList();
         ObservableList<Integer> yearList = FXCollections.observableArrayList(2020, 2021, 2022, 2023, 2024, 2025);
@@ -61,6 +61,11 @@ public class BookingSiteController {
             dayList.add(i);
             if(i < 13) monthList.add(i);
         }
+
+        for(int i = 1; i <= tour.getParticipantNum(); i++) {
+            noParticipantsList.add(i);
+        }
+
         String tourName = tour.getTourName();
         this.tourNameField.setText(tourName);
         numParticipantsBox.setItems(noParticipantsList);
@@ -98,6 +103,7 @@ public class BookingSiteController {
             bookingController.bookTour(booking);
             dialogVbox.getChildren().add(new Text("Bókunarnúmerið þitt er: " + booking.getBookingId()));
             tourController.changeTourSeatsLeft(tour.getTourID(), numParticipants, tour.getParticipantNum(), true);
+            tour.setParticipantNum(tour.getParticipantNum() - numParticipants);
             System.out.println(tour.getTourID() + "Fjöldi er " + numParticipants + "Pláss er " + tour.getParticipantNum());
         }
 
