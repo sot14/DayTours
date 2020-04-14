@@ -222,14 +222,17 @@ public class ReviewSiteController {
             };
 
     public void bokaFerdHandler(ActionEvent actionEvent) throws IOException {
-        final Stage popup = new Stage();
-        popup.initModality(Modality.APPLICATION_MODAL);
-        //popup.initOwner(primaryStage);
-        VBox dialogVbox = new VBox(20);
 
         if (tour.getParticipantNum() == 0) {
+            final Stage popup = new Stage();
+            popup.initModality(Modality.APPLICATION_MODAL);
+            VBox dialogVbox = new VBox(20);
             popUpMessage = new Text("  Ferðin er uppbókuð");
             bokaFerdButton.setDisable(true);
+            dialogVbox.getChildren().add(popUpMessage);
+            Scene dialogScene = new Scene(dialogVbox, 200, 100);
+            popup.setScene(dialogScene);
+            popup.show();
         }
         else {
             //loka núverandi glugga þ.e. tour/review glugga
@@ -237,7 +240,6 @@ public class ReviewSiteController {
             stage.close();
 
             //opna næsta glugga þ.e. booking glugga
-            //System.out.println(IndexSiteController.class.getResource("/Daytours/UI/BookingSite.fxml"));
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/BookingSite.fxml"));
             Parent root = fxmlLoader.load();
             BookingSiteController controller = fxmlLoader.getController();
@@ -247,10 +249,7 @@ public class ReviewSiteController {
             stage2.setScene(new Scene(root, 700, 450));
             stage2.show();
         }
-        dialogVbox.getChildren().add(popUpMessage);
-        Scene dialogScene = new Scene(dialogVbox, 200, 100);
-        popup.setScene(dialogScene);
-        popup.show();
+
     }
 
     public void tilBakaHandler(ActionEvent actionEvent) throws IOException {
