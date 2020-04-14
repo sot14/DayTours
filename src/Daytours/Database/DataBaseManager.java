@@ -77,11 +77,12 @@ public class DataBaseManager {
         }
     }
 
-    public void changeTourSeatsLeft(int id, int seatsBooked, int numSeats) {
+    public void changeTourSeatsLeft(int id, int seatsBooked, int numSeats, boolean booking) {
         try {
-            String sql = "UPDATE tour SET participantsnum=? WHERE id=?";
+            String sql = "UPDATE tour SET participantnum=? WHERE id=?";
             PreparedStatement stmt = db.prepareStatement(sql);
-            stmt.setInt(1, numSeats - seatsBooked);
+            if(booking) stmt.setInt(1, numSeats - seatsBooked);
+            else stmt.setInt(1, numSeats + seatsBooked);
             stmt.setInt(2, id);
             stmt.executeUpdate();
         } catch (SQLException e) {

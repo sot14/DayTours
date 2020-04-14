@@ -92,12 +92,13 @@ public class BookingSiteController {
         else if (month.getSelectionModel().isEmpty() || year.getSelectionModel().isEmpty() || this.cardNo.length() <= 0) {
             dialogVbox.getChildren().add(new Text("Vinsamlegast fyllið út kortaupplýsingar"));
         }
-        else if (this.phoneNo.length() <= 7) dialogVbox.getChildren().add(new Text("Vinsamlegast sláið inn símanúmer"));
+        else if (this.phoneNo.length() < 7) dialogVbox.getChildren().add(new Text("Vinsamlegast sláið inn símanúmer"));
         else {
             dialogVbox.getChildren().add(new Text("Bókun móttekin, takk fyrir viðskiptin"));
             bookingController.bookTour(booking);
             dialogVbox.getChildren().add(new Text("Bókunarnúmerið þitt er: " + booking.getBookingId()));
-            tourController.changeTourSeatsLeft(tour.getTourID(), numParticipants, tour.getParticipantNum());
+            tourController.changeTourSeatsLeft(tour.getTourID(), numParticipants, tour.getParticipantNum(), true);
+            System.out.println(tour.getTourID() + "Fjöldi er " + numParticipants + "Pláss er " + tour.getParticipantNum());
         }
 
         Scene dialogScene = new Scene(dialogVbox, 200, 100);

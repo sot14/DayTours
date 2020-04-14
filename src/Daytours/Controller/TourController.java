@@ -28,8 +28,8 @@ public class TourController {
         return db.getFilteredTours(name, pri, start, end, loc, length);
     }
 
-    public void changeTourSeatsLeft(int id, int seatsBooked, int seatsLeft) {
-        db.changeTourSeatsLeft(id, seatsBooked, seatsLeft);
+    public void changeTourSeatsLeft(int id, int seatsBooked, int seatsLeft, boolean booking) {
+        db.changeTourSeatsLeft(id, seatsBooked, seatsLeft, booking);
     }
 
     public ArrayList<Tour> searchTour(String tourName) {

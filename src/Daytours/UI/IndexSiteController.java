@@ -250,7 +250,8 @@ public class IndexSiteController {
             if(booking != null) {
                 int bookingTourID = booking.getTourID();
                 Tour afbokadTour = tourController.getTour(bookingTourID);
-                tourController.changeTourSeatsLeft(afbokadTour.getTourID(), booking.getParticipantNo(), afbokadTour.getParticipantNum());
+                tourController.changeTourSeatsLeft(afbokadTour.getTourID(), booking.getParticipantNo(), afbokadTour.getParticipantNum(), false);
+                bookingController.removeBooking(bokunarnumerInput);
                 System.out.println("Bókuninni þinni á ferðinni: " + tourController.getTour(bookingTourID).getTourName() + " á nafninu " + booking.getParticipantName() + " hefur verið eytt");
             }
             else System.out.println("Bókun ekki til");
