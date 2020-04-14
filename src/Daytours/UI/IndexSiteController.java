@@ -251,15 +251,20 @@ public class IndexSiteController {
         EventHandler<ActionEvent> afbokaFerd = event -> {
             int bokunarnumerInput = Integer.parseInt(bokunarnumer.getText());
             Booking booking = bookingController.getBooking(bokunarnumerInput);
+            Text skilabod = new Text("");
+            dialogVbox.getChildren().add(skilabod);
 
             if(booking != null) {
                 int bookingTourID = booking.getTourID();
                 Tour afbokadTour = tourController.getTour(bookingTourID);
-                tourController.changeTourSeatsLeft(afbokadTour.getTourID(), booking.getParticipantNo(), afbokadTour.getParticipantNum(), false);
-                bookingController.removeBooking(bokunarnumerInput);
+                //afbokadTour.setParticipantNum(afbokadTour.getParticipantNum() + booking.getParticipantNo());
+                //tourController.changeTourSeatsLeft(afbokadTour.getTourID(), booking.getParticipantNo(), afbokadTour.getParticipantNum(), false);
+                //bookingController.removeBooking(bokunarnumerInput);
                 System.out.println("Bókuninni þinni á ferðinni: " + tourController.getTour(bookingTourID).getTourName() + " á nafninu " + booking.getParticipantName() + " hefur verið eytt");
+                skilabod.setText("Bókuninni þinni á ferðinni: " + tourController.getTour(bookingTourID).getTourName() + " á nafninu " + booking.getParticipantName() + " hefur verið eytt");
+                setTourList();
             }
-            else System.out.println("Bókun ekki til");
+            else skilabod.setText("Bókun ekki til");
 
         };
         afbokaFerdButton2.setOnAction(afbokaFerd);

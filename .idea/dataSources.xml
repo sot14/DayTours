@@ -7,5 +7,11 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://kandula.db.elephantsql.com:5432/fezqdgur</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="fezqdgur@kandula.db.elephantsql.com" uuid="ab8df426-f924-47ce-8264-9f4ecd3efc90">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://kandula.db.elephantsql.com:5432/fezqdgur</jdbc-url>
+    </data-source>
   </component>
 </project>
