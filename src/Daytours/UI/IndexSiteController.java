@@ -151,10 +151,13 @@ public class IndexSiteController {
         ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
         tourList.setItems(listViewTours);
         lengthLabel.setText(Integer.toString(chosenLength));
+        veljaFerdButton.setDisable(true);
+
     }
 
     // atburðahandler fyrir hvaða landshluti er valinn
     public void landshlutiHandler(ActionEvent actionEvent) {
+        veljaFerdButton.setDisable(true);
         chosenLandshluti = landshlutiCombobox.getSelectionModel().getSelectedItem().toString();
         ArrayList<Tour> listOfTours;
         if(chosenLandshluti.equals("Allt landið")) {
@@ -196,6 +199,7 @@ public class IndexSiteController {
 
     // atburðarhandler fyrir hvaða dagsetninga tímabil er valið
     public void timabilHandler(ActionEvent actionEvent) {
+        veljaFerdButton.setDisable(true);
         LocalDate fra = fraDatePicker.getValue();
         LocalDate til = tilDatePicker.getValue();
 
@@ -218,6 +222,7 @@ public class IndexSiteController {
     }
 
     public void verdSliderHandler(MouseEvent mouseEvent) {
+        veljaFerdButton.setDisable(true);
         chosenPrice = (int)verdSlider.getValue();
         ArrayList<Tour> listOfTours = tourController.getFilteredTours(searchString, chosenPrice, fraDate, tilDate, chosenLandshluti, chosenLength);
         ObservableList<Tour> listViewTours = FXCollections.observableArrayList(listOfTours);
