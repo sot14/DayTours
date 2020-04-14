@@ -34,5 +34,5 @@
    <Label layoutX="382.0" layoutY="131.0" text="Fjöldi ferðalanga:" />
    <Label layoutX="480.0" layoutY="239.0" text="Samtals: " />
    <Label fx:id="tilBorgunar" layoutX="550.0" layoutY="239.0" prefHeight="17.0" prefWidth="114.0" text="Verð" />
-   <ComboBox fx:id="numParticipantsBox" layoutX="498.0" layoutY="126.0" onAction="#uppfaeraVerd" prefHeight="25.0" prefWidth="52.0" />
+   <ComboBox fx:id="numParticipantsBox" layoutX="498.0" layoutY="126.0" onAction="#uppfaeraVerd" prefHeight="25.0" prefWidth="63.0" />
 </AnchorPane>
