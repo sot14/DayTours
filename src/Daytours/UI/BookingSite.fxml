@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="458.0" prefWidth="726.0" style="-fx-border-color: #00BFFF; -fx-border-width: 5; -fx-border-radius: 3;" stylesheets="@IndexSite.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Daytours.UI.BookingSiteController">
+<AnchorPane prefHeight="458.0" prefWidth="726.0" style="-fx-border-color: #00BFFF; -fx-border-width: 5; -fx-border-radius: 3; -fx-background-color: #c7edff;" stylesheets="@DayTours.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Daytours.UI.BookingSiteController">
    <Label layoutX="104.0" layoutY="79.0" text="Nafn:" />
    <Label layoutX="103.0" layoutY="131.0" text="Hótel:" />
    <Label layoutX="382.0" layoutY="79.0" text="Símanúmer:" />

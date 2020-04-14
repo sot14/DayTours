@@ -35,7 +35,6 @@ public class BookingSiteController {
     public boolean hotelPickup = false;
     public TextField cardNumber;
     public String cardNo;
-    public ChoiceBox<Integer> day;
     public ChoiceBox<Integer> month;
     public ChoiceBox<Integer> year;
     public Label tourNameField;
@@ -65,7 +64,6 @@ public class BookingSiteController {
         String tourName = tour.getTourName();
         this.tourNameField.setText(tourName);
         numParticipantsBox.setItems(noParticipantsList);
-        day.setItems(dayList);
         month.setItems(monthList);
         year.setItems(yearList);
         tilBorgunar.setText("");
@@ -91,7 +89,7 @@ public class BookingSiteController {
 
         if (this.name.length() <= 0) dialogVbox.getChildren().add(new Text("Vinsamlegast skrifið nafnið ykkar"));
         else if (numParticipantsBox.getSelectionModel().isEmpty()) dialogVbox.getChildren().add(new Text("Vinsamlegast veljið fjölda ferðalanga"));
-        else if (day.getSelectionModel().isEmpty() || month.getSelectionModel().isEmpty() || year.getSelectionModel().isEmpty() || this.cardNo.length() <= 0) {
+        else if (month.getSelectionModel().isEmpty() || year.getSelectionModel().isEmpty() || this.cardNo.length() <= 0) {
             dialogVbox.getChildren().add(new Text("Vinsamlegast fyllið út kortaupplýsingar"));
         }
         else if (this.phoneNo.length() <= 7) dialogVbox.getChildren().add(new Text("Vinsamlegast sláið inn símanúmer"));
