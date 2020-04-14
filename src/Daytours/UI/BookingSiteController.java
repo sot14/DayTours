@@ -98,6 +98,7 @@ public class BookingSiteController {
             bookingController.bookTour(booking);
             dialogVbox.getChildren().add(new Text("Bókunarnúmerið þitt er: " + booking.getBookingId()));
             tourController.changeTourSeatsLeft(tour.getTourID(), numParticipants, tour.getParticipantNum(), true);
+            tour.setParticipantNum(tour.getParticipantNum() - numParticipants);
             System.out.println(tour.getTourID() + "Fjöldi er " + numParticipants + "Pláss er " + tour.getParticipantNum());
         }
 
