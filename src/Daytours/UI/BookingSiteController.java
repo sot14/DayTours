@@ -93,7 +93,6 @@ public class BookingSiteController {
     public void checkBookingInfo() throws IOException {
         final Stage popup = new Stage();
         popup.initModality(Modality.APPLICATION_MODAL);
-        //popup.initOwner(primaryStage);
         VBox dialogVbox = new VBox(20);
 
         if (this.name.length() <= 0) dialogVbox.getChildren().add(new Text("Vinsamlegast skrifið nafnið ykkar"));
@@ -141,7 +140,6 @@ public class BookingSiteController {
         stage.close();
 
         //opna fyrrverandi glugga þ.e. review glugga
-        //System.out.println(IndexSiteController.class.getResource("/Daytours/UI/ReviewSite.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/ReviewSite.fxml"));
         Parent root = fxmlLoader.load();
         IndexSiteController controller = fxmlLoader.getController();

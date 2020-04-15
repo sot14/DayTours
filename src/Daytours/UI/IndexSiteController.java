@@ -24,6 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -237,23 +238,27 @@ public class IndexSiteController {
         popup.initModality(Modality.APPLICATION_MODAL);
         VBox dialogVbox = new VBox(20);
         TextField bokunarnumer = new TextField();
+        Text skilabod = new Text("");
+        skilabod.setTextAlignment(TextAlignment.CENTER);
         Button afbokaFerdButton2 = new Button("Afbóka ferð");
+        afbokaFerdButton2.getStyleClass().add("takki");
+        afbokaFerdButton2.getStylesheets().add("/Daytours/UI/DayTours.css");
 
         dialogVbox.getChildren().add(new Text("Sláðu inn bókunarnúmer:"));
         dialogVbox.getChildren().add(bokunarnumer);
+        dialogVbox.getChildren().add(skilabod);
         dialogVbox.getChildren().add(afbokaFerdButton2);
         dialogVbox.setMargin(dialogVbox.getChildren().get(0), new Insets(40, 0, 0, 75));
         dialogVbox.setMargin(bokunarnumer, new Insets(0, 30, 5, 30));
+        dialogVbox.setMargin(skilabod, new Insets(0, 30, 5, 30));
         dialogVbox.setMargin(afbokaFerdButton2, new Insets(10, 0, 5, 105));
-        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        Scene dialogScene = new Scene(dialogVbox, 300, 250);
         popup.setScene(dialogScene);
         popup.show();
 
         EventHandler<ActionEvent> afbokaFerd = event -> {
             int bokunarnumerInput = Integer.parseInt(bokunarnumer.getText());
             Booking booking = bookingController.getBooking(bokunarnumerInput);
-            Text skilabod = new Text("");
-            dialogVbox.getChildren().add(skilabod);
 
             if(booking != null) {
                 int bookingTourID = booking.getTourID();
@@ -261,8 +266,8 @@ public class IndexSiteController {
                 //afbokadTour.setParticipantNum(afbokadTour.getParticipantNum() + booking.getParticipantNo());
                 //tourController.changeTourSeatsLeft(afbokadTour.getTourID(), booking.getParticipantNo(), afbokadTour.getParticipantNum(), false);
                 //bookingController.removeBooking(bokunarnumerInput);
-                System.out.println("Bókuninni þinni á ferðinni: " + tourController.getTour(bookingTourID).getTourName() + " á nafninu " + booking.getParticipantName() + " hefur verið eytt");
-                skilabod.setText("Bókuninni þinni á ferðinni: " + tourController.getTour(bookingTourID).getTourName() + " á nafninu " + booking.getParticipantName() + " hefur verið eytt");
+                System.out.println("Bókuninni þinni á ferðinni: \n" + tourController.getTour(bookingTourID).getTourName() + " á nafninu " + booking.getParticipantName() + " hefur verið eytt");
+                skilabod.setText("Bókuninni þinni á ferðinni: " + tourController.getTour(bookingTourID).getTourName() + "\n á nafninu " + booking.getParticipantName() + " hefur verið eytt");
                 setTourList();
             }
             else skilabod.setText("Bókun ekki til");
