@@ -33,7 +33,7 @@
          <font>
             <Font name="Droid Serif Bold" size="13.0" />
          </font></Label>
-      <Label fx:id="loc" layoutX="250.0" layoutY="380.0" prefHeight="16.0" prefWidth="65.0" text="Location">
+      <Label fx:id="loc" layoutX="250.0" layoutY="380.0" prefHeight="16.0" prefWidth="136.0" text="Location">
          <font>
             <Font name="Droid Serif Bold" size="13.0" />
          </font></Label>

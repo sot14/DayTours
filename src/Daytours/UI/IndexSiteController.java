@@ -96,6 +96,7 @@ public class IndexSiteController {
         landshlutiCombobox.getSelectionModel().select("Allt landið");
 
         leitaFerd.textProperty().addListener((observable, oldValue, newValue) -> {
+            veljaFerdButton.setDisable(true);
             searchString=leitaFerd.getText();
             ArrayList<Tour> listOfTours;
             if(chosenLandshluti.equals("Allt landið")) {
