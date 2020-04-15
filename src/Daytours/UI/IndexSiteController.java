@@ -132,7 +132,6 @@ public class IndexSiteController {
             stage.close();
 
             //opna næsta glugga þ.e. tour&review glugga
-            //System.out.println(IndexSiteController.class.getResource("/Daytours/UI/ReviewSite.fxml"));
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/ReviewSite.fxml"));
             Parent root = fxmlLoader.load();
@@ -263,10 +262,9 @@ public class IndexSiteController {
             if(booking != null) {
                 int bookingTourID = booking.getTourID();
                 Tour afbokadTour = tourController.getTour(bookingTourID);
-                //afbokadTour.setParticipantNum(afbokadTour.getParticipantNum() + booking.getParticipantNo());
-                //tourController.changeTourSeatsLeft(afbokadTour.getTourID(), booking.getParticipantNo(), afbokadTour.getParticipantNum(), false);
-                //bookingController.removeBooking(bokunarnumerInput);
-                System.out.println("Bókuninni þinni á ferðinni: \n" + tourController.getTour(bookingTourID).getTourName() + " á nafninu " + booking.getParticipantName() + " hefur verið eytt");
+                afbokadTour.setParticipantNum(afbokadTour.getParticipantNum() + booking.getParticipantNo());
+                tourController.changeTourSeatsLeft(afbokadTour.getTourID(), booking.getParticipantNo(), afbokadTour.getParticipantNum(), false);
+                bookingController.removeBooking(bokunarnumerInput);
                 skilabod.setText("Bókuninni þinni á ferðinni: " + tourController.getTour(bookingTourID).getTourName() + "\n á nafninu " + booking.getParticipantName() + " hefur verið eytt");
                 setTourList();
             }

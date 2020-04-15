@@ -124,7 +124,7 @@ public class BookingSiteController {
 
         }
 
-        Scene dialogScene = new Scene(dialogVbox, 200, 100);
+        Scene dialogScene = new Scene(dialogVbox, 240, 100);
         popup.setScene(dialogScene);
         popup.show();
     }
