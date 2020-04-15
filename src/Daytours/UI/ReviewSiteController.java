@@ -245,7 +245,7 @@ public class ReviewSiteController {
             BookingSiteController controller = fxmlLoader.getController();
             controller.init(tour, tourController.getDb());
             Stage stage2 = new Stage();
-            stage2.setTitle("Bóka tour");
+            stage2.setTitle("Bóka dagsferð");
             stage2.setScene(new Scene(root, 700, 450));
             stage2.show();
         }

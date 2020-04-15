@@ -83,10 +83,14 @@ public class BookingSiteController {
         hotelAddress = addressField.getText();
         booking = new Booking(phoneNo, cardNo, tourID, hotelPickup, name, numParticipants, hotelAddress);
 
-        checkBookingInfo();;
+        try {
+            checkBookingInfo();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    public void checkBookingInfo() {
+    public void checkBookingInfo() throws IOException {
         final Stage popup = new Stage();
         popup.initModality(Modality.APPLICATION_MODAL);
         //popup.initOwner(primaryStage);
@@ -104,7 +108,21 @@ public class BookingSiteController {
             dialogVbox.getChildren().add(new Text("Bókunarnúmerið þitt er: " + booking.getBookingId()));
             tourController.changeTourSeatsLeft(tour.getTourID(), numParticipants, tour.getParticipantNum(), true);
             tour.setParticipantNum(tour.getParticipantNum() - numParticipants);
-            System.out.println(tour.getTourID() + "Fjöldi er " + numParticipants + "Pláss er " + tour.getParticipantNum());
+
+            //loka núverandi glugga þ.e. tour/review glugga
+            Stage stage = (Stage) bookButton.getScene().getWindow();
+            stage.close();
+
+            //opna næsta glugga þ.e. booking glugga
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/IndexSite.fxml"));
+            Parent root = fxmlLoader.load();
+            IndexSiteController controller = fxmlLoader.getController();
+            controller.init(tourController.getDb());
+            Stage stage2 = new Stage();
+            stage2.setTitle("Dagsferðir ehf");
+            stage2.setScene(new Scene(root, 900, 600));
+            stage2.show();
+
         }
 
         Scene dialogScene = new Scene(dialogVbox, 200, 100);
@@ -126,8 +144,8 @@ public class BookingSiteController {
         //System.out.println(IndexSiteController.class.getResource("/Daytours/UI/ReviewSite.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Daytours/UI/ReviewSite.fxml"));
         Parent root = fxmlLoader.load();
-        ReviewSiteController controller = fxmlLoader.getController();
-        controller.init(tour, bookingController.getDb());
+        IndexSiteController controller = fxmlLoader.getController();
+        controller.init(bookingController.getDb());
         Stage stage2 = new Stage();
         stage2.setTitle(tour.getTourName());
         stage2.setScene(new Scene(root, 900, 750));
